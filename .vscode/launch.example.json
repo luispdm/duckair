@@ -1,0 +1,42 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'duckair'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=duckair",
+                    "--package=duckair"
+                ],
+                "filter": {
+                    "name": "duckair",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'duckair'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=duckair",
+                    "--package=duckair"
+                ],
+                "filter": {
+                    "name": "duckair",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
