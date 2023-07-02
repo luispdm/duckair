@@ -10,3 +10,11 @@ edition = "2021"
 [[bin]]
 name = "duckair"
 path = "main.rs"
+
+[[bin]]
+name = "data_types"
+path = "02_data_types/main.rs"
+
+[[bin]]
+name = "variables"
+path = "03_variables/main.rs"
