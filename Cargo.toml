@@ -22,3 +22,7 @@ path = "03_variables/main.rs"
 [[bin]]
 name = "operators"
 path = "04_operators/main.rs"
+
+[[bin]]
+name = "control_flow"
+path = "05_control_flow/main.rs"
