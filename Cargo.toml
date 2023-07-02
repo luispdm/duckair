@@ -18,3 +18,7 @@ path = "02_data_types/main.rs"
 [[bin]]
 name = "variables"
 path = "03_variables/main.rs"
+
+[[bin]]
+name = "operators"
+path = "04_operators/main.rs"
