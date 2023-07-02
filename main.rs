@@ -5,7 +5,7 @@ fn main() {
     println!("Hello {:?}", location);
     println!("My {} is at {}, {}", place, lat, long);
 
-    let immutable: &str = "I am an &str";
-    let mutable: String = format!("and {} too... whoops, my bad! I am a String", immutable);
-    println!("{} {}", immutable, mutable);
+    let a_str: &str = "I am an &str";
+    let a_string: String = format!("and {} too... whoops, my bad! I am a String", a_str);
+    println!("{} {}", a_str, a_string);
 }
