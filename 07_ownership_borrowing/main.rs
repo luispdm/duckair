@@ -22,7 +22,7 @@ fn main() {
      * "rust can't guarantee memory safety as there are read-only references that will use the value downstream, so data can't be changed"
      * NEED TO LOOK INTO THIS!
      */
-    
+
     let mut example = String::from("example");
     println!("{}", example);
     {
@@ -32,4 +32,36 @@ fn main() {
         println!("{}", example);
     }
     println!("{}", example); // prints: "changing" - borrowing ended as the borrower went out of scope, only one owner here
+
+    // lifetime - it only applies to data stored on the heap
+    let _outer_int;
+    {
+        let inner_int = 5;
+        _outer_int = &inner_int;
+    }
+    // println!("{}", outer_int); // error: dangling reference as "inner_int" was deallocated
+
+    let to_ret = 5;
+    println!("{}", ok_ref(&to_ret));
+
+    let p1 = 42;
+    let p2 = 88;
+    println!("{}", which_lifetime(&p1, &p2));
+}
+
+/* fn ret_bad_ref<'life>() -> &'life i32 {
+    let val = 5;
+    return &val; // cannot return a reference to a local variable as it will be deallocated => dangling reference
+} */
+
+fn ok_ref(val: &i32) -> &i32 {
+    val // the scope sending the reference is the same getting the reference back => no need to specify lifetime and no dangling references
+}
+
+// need to specify the lifetime of the param you are returning as there are 2 params in the function
+fn which_lifetime<'a>(p1: &'a i32, p2: &i32) -> &'a i32 {
+    if p1 < p2 {
+        return p1;
+    }
+    &0
 }
