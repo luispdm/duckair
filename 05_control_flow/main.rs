@@ -46,6 +46,14 @@ fn main() {
         _ => println!("No sound for {}", animal),
     }
 
+    // more match statements
+    let frequency: u16 = 201;
+    match frequency {
+        200..=500 => println!("{}Hz is in range", frequency), // "=500" means inclusive range. Exclusive range syntax is experimental as of 07-2023
+        // the above statement can be rewritten as: frq if frq > 200 && frq <= 500 => println!("{}Hz is a valid frequency", frequency),
+        _ => println!("{}Hz is out of range", frequency),
+    }
+
     // option enum: used to express the existence or non-existence of a value - there's no null/nil in Rust!
     let idx = 6;
     let phrase = String::from("Hello World!");
@@ -53,5 +61,17 @@ fn main() {
     match letter {
         Some(chr) => println!("Char at index {} is {}", idx, chr),
         None => println!("No character found at index {}", idx),
+    }
+
+    // if let statement: the compiler tests if the variable on the left can be assigned to to the one on the right
+    // if it can, the pattern is irrefutable and the code in the block is executed
+    let anodah_animoh = "Cat";
+    if let ch = anodah_animoh {
+        println!("Aniaml {} goes meow!", ch); // irrefutable pattern: this will always be executed as "ch" can be assigned to "anodah__animoh"
+    }
+    // this pattern is not irrefutable, as "Bacon" is not contained inside "dish", therefore the code inside the block is not executed
+    let dish = ("Ham", "Eggs");
+    if let ("Bacon", b) = dish {
+        println!("Bacon is served with {}", b);
     }
 }
