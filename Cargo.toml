@@ -26,3 +26,11 @@ path = "05_operators/main.rs"
 [[bin]]
 name = "control_flow"
 path = "06_control_flow/main.rs"
+
+[[bin]]
+name = "project_1"
+path = "91_project/main.rs"
+
+[[bin]]
+name = "project_2"
+path = "92_project/main.rs"
