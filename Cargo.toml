@@ -28,6 +28,10 @@ name = "control_flow"
 path = "06_control_flow/main.rs"
 
 [[bin]]
+name = "ownership"
+path = "07_ownership_borrowing/main.rs"
+
+[[bin]]
 name = "project_1"
 path = "91_project/main.rs"
 
