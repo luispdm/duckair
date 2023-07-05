@@ -13,16 +13,16 @@ path = "main.rs"
 
 [[bin]]
 name = "data_types"
-path = "02_data_types/main.rs"
+path = "03_data_types/main.rs"
 
 [[bin]]
 name = "variables"
-path = "03_variables/main.rs"
+path = "04_variables/main.rs"
 
 [[bin]]
 name = "operators"
-path = "04_operators/main.rs"
+path = "05_operators/main.rs"
 
 [[bin]]
 name = "control_flow"
-path = "05_control_flow/main.rs"
+path = "06_control_flow/main.rs"
