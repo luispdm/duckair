@@ -1,7 +1,7 @@
 enum NavigationAids {
-    NDB, // 0
-    VOR, // 1
-    VORDME, // 2
+    Ndb, // 0
+    Vor, // 1
+    VorDme, // 2
 }
 
 /* enum NavigationAids {
@@ -34,7 +34,7 @@ fn main() {
 
     // enum
     // it works similarly to "iota" in go
-    println!("NDB:\t{}", NavigationAids::NDB as u8); // "as u8" required as the compiler can't infer the type
-    println!("VOR:\t{}", NavigationAids::VOR as u8);
-    println!("VORDME:\t{}", NavigationAids::VORDME as u8);
+    println!("NDB:\t{}", NavigationAids::Ndb as u8); // "as u8" required as the compiler can't infer the type
+    println!("VOR:\t{}", NavigationAids::Vor as u8);
+    println!("VORDME:\t{}", NavigationAids::VorDme as u8);
 }
