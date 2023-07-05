@@ -74,4 +74,17 @@ fn main() {
     if let ("Bacon", b) = dish {
         println!("Bacon is served with {}", b);
     }
+
+    // loops
+    // infinite loop
+    /* loop {
+        println!("You'll never get to the bottom of this!");
+    } */
+    // while and for loops are pretty similar to other languages
+    // while let works similarly to if let
+    // for each
+    let nums = [1, 2, 3, 4];
+    for num in nums {
+        println!("{}", num);
+    }
 }
