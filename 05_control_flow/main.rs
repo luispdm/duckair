@@ -1,6 +1,6 @@
 enum NavigationAids {
-    Ndb, // 0
-    Vor, // 1
+    Ndb,    // 0
+    Vor,    // 1
     VorDme, // 2
 }
 
@@ -38,11 +38,18 @@ fn main() {
     println!("VOR:\t{}", NavigationAids::Vor as u8);
     println!("VORDME:\t{}", NavigationAids::VorDme as u8);
 
-    // Option enum: used to express the existence or non-existence of a value - there's no null/nil in Rust!
+    // match statement: it works like switch-case in other languages
+    let animal = "Crocodile";
+    match animal {
+        "Duck" => println!("Quack"),
+        "Dog" => println!("Woof"),
+        _ => println!("No sound for {}", animal),
+    }
+
+    // option enum: used to express the existence or non-existence of a value - there's no null/nil in Rust!
     let idx = 6;
     let phrase = String::from("Hello World!");
     let letter = phrase.chars().nth(idx);
-
     match letter {
         Some(chr) => println!("Char at index {} is {}", idx, chr),
         None => println!("No character found at index {}", idx),
