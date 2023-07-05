@@ -37,4 +37,14 @@ fn main() {
     println!("NDB:\t{}", NavigationAids::Ndb as u8); // "as u8" required as the compiler can't infer the type
     println!("VOR:\t{}", NavigationAids::Vor as u8);
     println!("VORDME:\t{}", NavigationAids::VorDme as u8);
+
+    // Option enum: used to express the existence or non-existence of a value - there's no null/nil in Rust!
+    let idx = 6;
+    let phrase = String::from("Hello World!");
+    let letter = phrase.chars().nth(idx);
+
+    match letter {
+        Some(chr) => println!("Char at index {} is {}", idx, chr),
+        None => println!("No character found at index {}", idx),
+    }
 }
