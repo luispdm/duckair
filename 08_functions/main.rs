@@ -1,4 +1,9 @@
-use std::{fs::File, io::ErrorKind};
+#![allow(unused_imports)]
+use std::{
+    error::Error,
+    fs::File,
+    io::{ErrorKind, Read},
+};
 
 fn main() {
     println!("{}", return_greater(1, 2));
@@ -19,8 +24,8 @@ fn main() {
     // panic!("panic"); // this is how you panic
     // panic_vec() // this is how you panic pt.2: "index out of bounds"
 
-    // error handling with Result Enum
-    let path = "/impossiblethatthispathexists/i/do/not/exist";
+    // error handling with Result Enum - UNCOMMENT IF YOU WANT MAIN TO CRASH
+    /* let path = "/impossiblethatthispathexists/i/do/not/exist";
     match File::open(path) {
         Ok(f) => {
             println!("{:#?}", f);
@@ -38,6 +43,14 @@ fn main() {
                 println!("cannot open file because: {:#?}", err);
             }
         },
+    } */
+
+    // error propagation
+    let path = "08_functions/dummy.md";
+    let data = read_file(path);
+    match data {
+        Ok(d) => println!("{:#?}", d),
+        Err(e) => println!("{:#?}", e),
     }
 }
 
@@ -67,4 +80,12 @@ fn change_var(s: &mut String) {
 fn _panic_vec() {
     let v = vec![1, 2];
     println!("{}", v[5]);
+}
+
+// TODO need to know what "Box" and "dyn" are used for
+fn read_file(p: &str) -> Result<String, Box<dyn Error>> {
+    let mut handle = File::open(p)?; // "?" makes the function return if "open" fails. Same thing for "read_to_string"
+    let mut data = String::new();
+    handle.read_to_string(&mut data)?;
+    Ok(data)
 }
