@@ -1,11 +1,33 @@
 fn main() {
     println!("{}", return_greater(1, 2));
+
+    let mut original = String::from("initial value");
+    println!("{}", original);
+    print_var(&original);
+    println!("Can use original again: {}", original); // original holds the value again as "print_original" returned and the vars inside its scope got destroyed
+    change_var(&mut original);
+    println!("Has original changed? Let's see: {}", original);
 }
 
-// function - pass by value
+// pass by value
 fn return_greater(n1: u8, n2: u8) -> u8 {
     if n1 > n2 {
         return n1;
     }
     n2
+}
+
+// pass by reference - borrowing the value from the parameter passed in
+fn print_var(s: &String) {
+    println!("fn prints {}", s);
+}
+
+// pass by value - if this is called then "original" in main() can't be used anymore, as the ownership got transferred to "s" (fn param)
+/* fn print_original(s: String) {
+    println!("fn prints {}", s);
+} */
+
+// pass by reference - borrowing for read and write (mutability)
+fn change_var(s: &mut String) {
+    *s = String::from("I have become death, destroyer of worlds");
 }
