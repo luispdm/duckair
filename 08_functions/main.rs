@@ -1,3 +1,5 @@
+use std::{fs::File, io::ErrorKind};
+
 fn main() {
     println!("{}", return_greater(1, 2));
 
@@ -16,6 +18,27 @@ fn main() {
     // errors
     // panic!("panic"); // this is how you panic
     // panic_vec() // this is how you panic pt.2: "index out of bounds"
+
+    // error handling with Result Enum
+    let path = "/impossiblethatthispathexists/i/do/not/exist";
+    match File::open(path) {
+        Ok(f) => {
+            println!("{:#?}", f);
+        }
+        Err(err) => match err.kind() {
+            ErrorKind::NotFound => match File::create(path) { // trying to recovering the error by creating the file
+                Ok(fc) => {
+                    println!("{:#?}", fc);
+                }
+                Err(e) => {
+                    println!("cannot create file because: {:#?}", e);
+                }
+            },
+            _ => {
+                println!("cannot open file because: {:#?}", err);
+            }
+        },
+    }
 }
 
 // pass by value
