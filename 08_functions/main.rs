@@ -10,10 +10,12 @@ fn main() {
 
     // closures
     let thanos = String::from("I am");
-    let closure = |s: &String| -> String {
-        format!("{}... inevitable!", s)
-    };
+    let closure = |s: &String| -> String { format!("{}... inevitable!", s) };
     println!("{}", closure(&thanos));
+
+    // errors
+    // panic!("panic"); // this is how you panic
+    // panic_vec() // this is how you panic pt.2: "index out of bounds"
 }
 
 // pass by value
@@ -37,4 +39,9 @@ fn print_var(s: &String) {
 // pass by reference - borrowing for read and write (mutability)
 fn change_var(s: &mut String) {
     *s = String::from("I have become death, destroyer of worlds");
+}
+
+fn _panic_vec() {
+    let v = vec![1, 2];
+    println!("{}", v[5]);
 }
