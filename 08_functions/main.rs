@@ -7,6 +7,13 @@ fn main() {
     println!("Can use original again: {}", original); // original holds the value again as "print_original" returned and the vars inside its scope got destroyed
     change_var(&mut original);
     println!("Has original changed? Let's see: {}", original);
+
+    // closures
+    let thanos = String::from("I am");
+    let closure = |s: &String| -> String {
+        format!("{}... inevitable!", s)
+    };
+    println!("{}", closure(&thanos));
 }
 
 // pass by value

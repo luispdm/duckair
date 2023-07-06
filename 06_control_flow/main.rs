@@ -1,3 +1,5 @@
+#![allow(irrefutable_let_patterns)]
+
 enum NavigationAids {
     Ndb,    // 0
     Vor,    // 1
