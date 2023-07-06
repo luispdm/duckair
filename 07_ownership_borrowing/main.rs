@@ -21,6 +21,9 @@ fn main() {
      * error: "new_stuff" changed after being borrowed
      * "rust can't guarantee memory safety as there are read-only references that will use the value downstream, so data can't be changed"
      * NEED TO LOOK INTO THIS!
+     * 
+     * Maybe because "new_stuff" doesn't own that memory location anymore so there's no memory location the new value can be stored at?
+     * Now the new owner, or at least the temporary owner until it gets destroyed, is "borrowing"
      */
 
     let mut example = String::from("example");

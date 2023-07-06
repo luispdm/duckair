@@ -32,6 +32,10 @@ name = "ownership"
 path = "07_ownership_borrowing/main.rs"
 
 [[bin]]
+name = "functions"
+path = "08_functions/main.rs"
+
+[[bin]]
 name = "project_1"
 path = "91_project/main.rs"
 
