@@ -22,6 +22,7 @@ impl Segment {
     }
 
     fn distance(&self) -> f32 {
+        println!("calculating distance between {} and {}...", self.start.name, self.end.name);
         2513.0
     }
 }
