@@ -36,6 +36,10 @@ name = "functions"
 path = "08_functions/main.rs"
 
 [[bin]]
+name = "data_structures"
+path = "09_data_structures/main.rs"
+
+[[bin]]
 name = "project_1"
 path = "91_project/main.rs"
 
