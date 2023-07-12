@@ -44,5 +44,47 @@ fn main() {
         ..kcle // copying fields from kcle. "name" will be overridden by the statement above
     };
     let seg = Segment::new(kcle, kslc);
-    println!("the distance between {} and {} is {:.1} km", seg.start.name, seg.end.name, seg.distance())
+    println!("the distance between {} and {} is {:.1} km", seg.start.name, seg.end.name, seg.distance());
+
+    let a_380 = Airbus {
+        name: "VY6605".to_string(),
+        available_crew: 10,
+        fuel_range: 2000
+    };
+    let b_747 = Boeing {
+        name: "FR9090".to_string(),
+        available_crew: 2,
+        fuel_range: 100
+    };
+    println!("is flight {} legal?\t{}", a_380.name, a_380.is_legal(5, 1000));
+    println!("is flight {} legal?\t{}", b_747.name, b_747.is_legal(5, 1000));
+}
+
+// traits are the equivalent to interfaces in OO languages
+trait Flight {
+    fn is_legal(&self, required_crew: u8, distance: u16) -> bool;
+}
+
+struct Airbus {
+    name: String,
+    available_crew: u8,
+    fuel_range: u16,
+}
+
+struct Boeing {
+    name: String,
+    available_crew: u8,
+    fuel_range: u16,
+}
+
+impl Flight for Airbus {
+    fn is_legal(&self, required_crew: u8, distance: u16) -> bool {
+        (self.available_crew >= required_crew) && (self.fuel_range + 150 >= distance)
+    }
+}
+
+impl Flight for Boeing {
+    fn is_legal(&self, required_crew: u8, distance: u16) -> bool {
+        (self.available_crew >= required_crew) && (self.fuel_range + 280 >= distance)
+    }
 }
