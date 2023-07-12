@@ -11,13 +11,15 @@ fn main() {
     let mut original = String::from("initial value");
     println!("{}", original);
     print_var(&original);
-    println!("Can use original again: {}", original); // original holds the value again as "print_original" returned and the vars inside its scope got destroyed
+    println!("Can use original again: {}", original); // original holds the value again as "print_var" returned and the vars inside its scope got destroyed
     change_var(&mut original);
-    println!("Has original changed? Let's see: {}", original);
+    println!("Has original changed? Let's see: {}", original); // yes, it has
 
     // closures
     let thanos = String::from("I am");
-    let closure = |s: &String| -> String { format!("{}... inevitable!", s) };
+    let closure = |s: &String| -> String {
+        format!("{}... inevitable!", s)
+    };
     println!("{}", closure(&thanos));
 
     // errors
@@ -31,7 +33,7 @@ fn main() {
             println!("{:#?}", f);
         }
         Err(err) => match err.kind() {
-            ErrorKind::NotFound => match File::create(path) { // trying to recovering the error by creating the file
+            ErrorKind::NotFound => match File::create(path) { // trying to recover the error by creating the file
                 Ok(fc) => {
                     println!("{:#?}", fc);
                 }
