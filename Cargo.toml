@@ -40,6 +40,14 @@ name = "data_structures"
 path = "09_data_structures/main.rs"
 
 [[bin]]
+name = "collections"
+path = "10_collections/main.rs"
+
+[[bin]]
+name = "generics"
+path = "11_generics/main.rs"
+
+[[bin]]
 name = "project_1"
 path = "91_project/main.rs"
 
