@@ -48,6 +48,10 @@ name = "generics"
 path = "11_generics/main.rs"
 
 [[bin]]
+name = "concurrency"
+path = "12_concurrency/main.rs"
+
+[[bin]]
 name = "project_1"
 path = "91_project/main.rs"
 
