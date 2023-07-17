@@ -19,7 +19,7 @@ fn main() {
     let jh = thread::spawn(move || { // "move" because I need the closure to take ownership of var
         var * 2
     });
-    // join ~= "waitGroup.wait()" in Go, plus it captures the return value coming from the thread
+    // join ~= "waitGroup.Wait()" in Go, plus it captures the return value coming from the thread
     let res = jh.join();
     match res {
         Ok(val) => {println!("{} * 2 = {}", var, val)},
