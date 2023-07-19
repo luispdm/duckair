@@ -7,9 +7,11 @@ edition = "2021"
 
 [dependencies]
 
-[[bin]]
-name = "duckair"
-path = "main.rs"
+# Required for rust-analyzer and clippy to work in VSCode when multiple Cargo.toml files are stored in the repo
+[workspace]
+members = [
+    "13_module"
+]
 
 [[bin]]
 name = "data_types"

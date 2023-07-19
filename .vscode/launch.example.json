@@ -4,15 +4,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'duckair'",
+            "name": "Debug executable 'data_structures'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=duckair",
-                    "--package=duckair"
+                    "--bin=data_structures",
+                    "--package=data_structures"
                 ],
                 "filter": {
-                    "name": "duckair",
+                    "name": "data_structures",
                     "kind": "bin"
                 }
             },
@@ -22,16 +22,16 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'duckair'",
+            "name": "Debug unit tests in executable 'data_structures'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=duckair",
-                    "--package=duckair"
+                    "--bin=data_structures",
+                    "--package=data_structures"
                 ],
                 "filter": {
-                    "name": "duckair",
+                    "name": "data_structures",
                     "kind": "bin"
                 }
             },

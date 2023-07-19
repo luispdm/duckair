@@ -1,0 +1,13 @@
+[package]
+name = "publish_demo"
+version = "0.0.1"
+edition = "2021"
+description = "Pluralsight demo project"
+license = "Apache-2.0"
+
+[dependencies]
+rand = "0.8.5"
+
+[[bin]]
+name = "demo"
+path = "main.rs"
