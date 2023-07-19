@@ -15,7 +15,7 @@ fn main() {
      */
 
     // two ways to declare a vector
-    let v = vec![1, 2, 3];
+    let v: Vec<&str> = Vec::new();
     let mut mv: Vec<&str> = vec!["one"];
     // four ways to add and remove elements
     mv.push("two");

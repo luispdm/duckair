@@ -4,7 +4,7 @@ use std::ops::{Add, Mul};
 struct WithGenerics<T, U> {
     name: String,
     first: T,
-    second: U, // second's type can be the same as first or a different one
+    second: U, // second's concrete type can be the same as first or a different one
 }
 
 fn main() {
