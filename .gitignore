@@ -1,3 +1,4 @@
+# Cargo.lock needed for binaries, not for libraries
 target
 launch.json
 settings.json
