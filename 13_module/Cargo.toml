@@ -1,5 +1,5 @@
 [package]
-name = "publish_demo"
+name = "publish_demo_luispdm"
 version = "0.0.1"
 edition = "2021"
 description = "Pluralsight demo project"
