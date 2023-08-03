@@ -82,11 +82,25 @@ fn main() {
     /* loop {
         println!("You'll never get to the bottom of this!");
     } */
+    // loops can return values
+    let mut counter = 0;
+    let result = loop {
+        counter += 1;
+        if counter == 10 {
+            break counter;
+        }
+    };
+    println!("counting stuff in the loop returns... {}", result);
     // while and for loops are pretty similar to other languages
     // while let works similarly to if let
     // for each
     let nums = [1, 2, 3, 4];
-    for num in nums {
+    // for each
+    for num in nums { // you can also do "for num in nums.iter()"
+        println!("{}", num);
+    }
+    // you can run for loops over ranges
+    for num in 0..4 { // exclusive range (prints 1 to 4)
         println!("{}", num);
     }
 }
