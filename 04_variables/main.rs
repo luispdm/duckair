@@ -30,4 +30,8 @@ fn main() {
         let scope = "shadowing my variable in an inner block";
         println!("{}", scope); // "shadowing my variable in an inner block"
     }
+
+    // constants
+    const _A_NUM: u32 = 0; // type is mandatory when declaring constants
+    // const A_NUM: u32 = 100; // constants cannot be shadowed!
 }
