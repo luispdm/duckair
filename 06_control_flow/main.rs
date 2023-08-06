@@ -65,16 +65,32 @@ fn main() {
         None => println!("No character found at index {}", idx),
     }
 
-    // if let statement: the compiler tests if the variable on the left can be assigned to the one on the right
-    // if it can, the pattern is irrefutable and the code in the block is executed
+    /*
+     * if let statement: the compiler tests if the assignment "if let ch = anodah_animoh"
+     * can be executed.
+     */
     let anodah_animoh = "Cat";
     if let ch = anodah_animoh {
-        println!("Animal {} goes meow!", ch); // irrefutable pattern: this will always be executed as "ch" can be assigned to "anodah__animoh"
+        /*
+         * Irrefutable pattern: this will always be executed as "ch" can be assigned
+         * to "anodah__animoh".
+         *
+         * In this case the rust-analyzer can evaluate the irrefutability of the pattern
+         * at compile time, hence the warning coming from the IntelliSense.
+         * The warning is silenced with the top-level statement:
+         * "#![allow(irrefutable_let_patterns)]".
+         */
+        println!("Animal {} goes meow!", ch);
     }
-    // this pattern is not irrefutable, as "Bacon" is not contained inside "dish", therefore the code inside the block is not executed
-    let dish = ("Ham", "Eggs");
-    if let ("Bacon", b) = dish {
-        println!("Bacon is served with {}", b);
+    /*
+     * The code inside this block will be executed as "Bacon" is contained inside the tuple.
+     * However, at compile time this is not known yet, as the lookup of the tuple
+     * is done at runtime.
+     * For this reason the pattern is NOT deemed as irrefutable as in the previous "if let".
+     */
+    let dish = ("Bacon", "Ham", "Eggs");
+    if let ("Bacon", b, c) = dish {
+        println!("Bacon is served with {} and {}", b, c);
     }
 
     // loops
