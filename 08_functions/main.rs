@@ -21,6 +21,11 @@ fn main() {
         format!("{}... inevitable!", s)
     };
     println!("{}", closure(&thanos));
+    // closures can also be used directly instead of assigning them to a variable
+    let check = String::from("\"anonymous");
+    println!("{}", |s: &String| -> String {
+        format!("{} closure\"", s)
+    }(&check));
 
     // errors
     // panic!("panic"); // this is how you panic
@@ -86,7 +91,8 @@ fn _panic_vec() {
 
 // TODO need to know what "Box" and "dyn" are used for
 fn read_file(p: &str) -> Result<String, Box<dyn Error>> {
-    let mut handle = File::open(p)?; // "?" makes the function return if "open" fails. Same thing for "read_to_string"
+    // "?" makes the function return if "open" fails. Same thing for "read_to_string"
+    let mut handle = File::open(p)?;
     let mut data = String::new();
     handle.read_to_string(&mut data)?;
     Ok(data)
