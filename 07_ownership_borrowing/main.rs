@@ -34,7 +34,7 @@ fn main() {
         println!("{}", changing);
         println!("{}", example);
     }
-    println!("{}", example); // prints: "changing" - borrowing ended as the borrower went out of scope, only one owner here
+    println!("{}", example); // prints: "changing" - borrowing ended as the borrower went out of scope here
 
     // lifetime - it only applies to data stored on the heap
     let _outer_int;
@@ -42,7 +42,7 @@ fn main() {
         let inner_int = 5;
         _outer_int = &inner_int;
     }
-    // println!("{}", outer_int); // error: dangling reference as "inner_int" was deallocated
+    // println!("{}", _outer_int); // error: dangling reference as "inner_int" was deallocated
 
     let to_ret = 5;
     println!("{}", ok_ref(&to_ret));
