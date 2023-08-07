@@ -68,6 +68,6 @@ fn main() {
     // btree sets and hashsets
     let mut s = HashSet::new();
     s.insert(1);
-    s.insert(1); // as with other languages, sets do not allow duplicates => element overwritten
+    s.insert(1); // as with other languages, sets do not allow duplicates => no error, element overwritten
     println!("{:?}", s);
 }
