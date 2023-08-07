@@ -16,7 +16,7 @@ fn main() {
     println!("{}, {}, {}", test.name, test.first, test.second);
     println!("{}", add(1, 2));
     println!("{}", add_and_multiply(2, 3));
-    println!("{:?}", dio(&test, &test));
+    println!("{:?}", lt_gn(&test, &test));
 }
 
 // this tells the compiler that T must implement the trait "Add" in order to be used by the method
@@ -34,6 +34,6 @@ where
 }
 
 // this is how you declare a method that uses both lifetime and generics
-fn dio<'a, T>(a: &'a T, _b: &T) -> &'a T {
+fn lt_gn<'a, T>(a: &'a T, _b: &T) -> &'a T {
     a
 }
