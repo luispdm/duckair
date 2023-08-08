@@ -27,6 +27,10 @@ fn main() {
     for i in mv.iter() {
         println!("{}", i);
     }
+    // arrays and vectors are sliced with ".." (last index is exclusive)
+    {
+        println!("{:?}", &mv[0..2]); // prints one, two"
+    }
     // 10 > mv.len() => Rust panics. Uncomment to trigger the error
     // println!("{}", mv[10]);
     /*
