@@ -15,6 +15,9 @@ fn main() {
     let a_str: &str = "I am an &str";
     let a_string: String = format!("and {} too... whoops, my bad! I am a String", a_str);
     println!("{} {}", a_str, a_string);
+    // characters
+    let a_char = 'a';
+    println!("Chars are defined with '' like in go: {}", a_char);
 
     // numbers
     let _big_num = 500_000_000; // big numbers can use "_" as separators for better readability
