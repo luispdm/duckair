@@ -13,6 +13,10 @@ fn main() {
      * or any number of immutable references.
      * 2. References must always be valid.
      * 3. The scope of the reference ends when the reference is last used.
+     * 
+     * Addition on 1:
+     * Think of "&var" as a shared reference (you can have more than one).
+     * Think of "&mut var" as an exclusive reference (you can only have one).
      */
     let _next = &new;
     println!("{}", new); // it compiles because the value was borrowed (next has temporary ownership until it is destroyed)
