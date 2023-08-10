@@ -1,30 +1,40 @@
 fn main() {
     // ownership: "there can be one and only one owner of data at a time". It applies only to data on the heap!!!
+    // when the owner goes out of scope, the value is dropped
     let original = String::from("ciao");
     println!("{}", original);
     let new = original;
     // println!("{}", original); // error: borrow of moved value: `original` - "new" is the new owner of the value, "original" doesn't exist anymore
     println!("{}", new);
 
-    // borrowing
+    // borrowing - done via references (&)
+    /*
+     * 1. At any given time, you can have either one mutable reference
+     * or any number of immutable references.
+     * 2. References must always be valid.
+     * 3. The scope of the reference ends when the reference is last used.
+     */
     let _next = &new;
     println!("{}", new); // it compiles because the value was borrowed (next has temporary ownership until it is destroyed)
 
     let mut _new_stuff = String::from("ciao");
     println!("{}", _new_stuff);
+    // 👇 "new_stuff" can be changed here because the immutable reference comes afterwards
     _new_stuff = String::from("hola");
     let borrowing = &_new_stuff;
-    println!("{}", borrowing); // ok because "new_stuff" changed before being borrowed by a read-only reference
+    println!("{}", borrowing); // reference last used => scope of the reference ends here
     _new_stuff = String::from("hello");
-    // println!("{}", borrowing);
-    /* TODO
-     * error: "new_stuff" changed after being borrowed
-     * "rust can't guarantee memory safety as there are read-only references that will use the value downstream, so data can't be changed"
-     * NEED TO LOOK INTO THIS!
-     * 
-     * Maybe because "new_stuff" doesn't own that memory location anymore so there's no memory location the new value can be stored at?
-     * Now the new owner, or at least the temporary owner until it gets destroyed, is "borrowing"
+    /*
+     * 👇 this causes compilation errors on new_stuff 2nd's assignment
+     * as the immutable reference is used after the value is changed
      */
+    // println!("{}", borrowing);
+    // 👇 ok because there are no more immutable references in use
+    let mutable = &mut _new_stuff;
+    mutable.push_str(", world");
+    // compilation error: a mutable reference is used after (👇 is an immutable reference)
+    // println!("{}", _new_stuff);
+    println!("{}", mutable);
 
     let mut example = String::from("example");
     println!("{}", example);
