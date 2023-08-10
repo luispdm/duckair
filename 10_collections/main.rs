@@ -31,6 +31,11 @@ fn main() {
     {
         println!("{:?}", &mv[0..2]); // prints one, two"
     }
+    /*
+     * &mv[..]  => the whole slice
+     * &mv[1..] => the slice from the 2nd element
+     * &mv[..2] => the slice till the 2nd element
+     */
     // 10 > mv.len() => Rust panics. Uncomment to trigger the error
     // println!("{}", mv[10]);
     /*
