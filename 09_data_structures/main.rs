@@ -54,7 +54,7 @@ fn main() {
     };
     let kcle_copy = Waypoint {
         name: "KCLE_COPY".to_string(),
-        ..kcle // copying fields from kcle. "name" will be overridden by the statement above
+        ..kcle // "update syntax". copying fields from kcle. "name" will be overridden by the statement above
     };
     let seg = Segment::new(kcle, kslc);
     println!(
