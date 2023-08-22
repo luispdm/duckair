@@ -14,7 +14,7 @@ fn main() {
      * 2. References must always be valid.
      * 3. The scope of the reference ends when the reference is last used.
      * 
-     * Addition on 1:
+     * Addition to 1:
      * Think of "&var" as a shared reference (you can have more than one).
      * Think of "&mut var" as an exclusive reference (you can only have one).
      */
