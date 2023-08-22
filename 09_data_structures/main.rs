@@ -54,7 +54,9 @@ fn main() {
     };
     let kcle_copy = Waypoint {
         name: "KCLE_COPY".to_string(),
-        ..kcle // "update syntax". copying fields from kcle. "name" will be overridden by the statement above
+        // "update syntax". copying fields from kcle. "name" will be overridden by the statement above
+        // the update syntax MUST ALWAYS be the last field inside the struct construction
+        ..kcle
     };
     let seg = Segment::new(kcle, kslc);
     println!(
