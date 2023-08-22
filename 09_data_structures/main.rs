@@ -13,23 +13,32 @@ struct Segment {
 }
 
 // in Rust, you don't write methods inside a struct, you write methods and you associate them this way
-// associative methods
 impl Segment {
-    fn new(start: Waypoint, end: Waypoint) -> Self {
-        Self { start, end }
-    }
-
+    // this is called method because &self is the first parameter, "dot notation" (i.e. an instance is required to use the method)
     fn distance(&self) -> f32 {
         println!(
             "calculating distance between {} and {}...",
-            self.start.name, self.end.name
+            self.start.name, self.end.name // automatic referencing and dereferencing in Rust => don't need a special syntax to use "&self"
         );
         2513.0
     }
 }
 
+// there can be multiple implementation blocks for a struct
+impl Segment {
+    // associated functions and not methods because &self is not the first parameter, :: notation (i.e. Segment::new, Segment::build_segment)
+    fn new(start: Waypoint, end: Waypoint) -> Self {
+        Self { start, end }
+    }
+    // alternative constructor
+    fn build_segment(start: Waypoint, end: Waypoint) -> Segment {
+        Segment { start, end } // field initialization shorthand syntax
+    }
+}
+
 fn main() {
-    // structs can also be declared mutable with the "mut" keyword
+    // structs can also be declared mutable. You can't make a single field of the struct mutable,
+    // the whole struct must be mutable
     let kcle = Waypoint {
         name: "KCLE".to_string(),
         latitude: 41.4075,
@@ -72,6 +81,11 @@ fn main() {
         b_747.name,
         b_747.is_legal(5, 1000)
     );
+    println!("{:#?}", a_380);
+
+    // tuple structs - despite having the same fields, these are two separate types
+    struct One(i32, String);
+    struct Two(i32, String);
 }
 
 // traits are the equivalent to interfaces in OO languages
@@ -79,6 +93,11 @@ trait Flight {
     fn is_legal(&self, required_crew: u8, distance: u16) -> bool;
 }
 
+/*
+ * telling the compiler to provide the implementation of Debug for Airbus,
+ * so instances of this struct can be printed
+ */
+#[derive(Debug)]
 struct Airbus {
     name: String,
     available_crew: u8,
