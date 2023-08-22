@@ -12,6 +12,9 @@ struct Segment {
     end: Waypoint,
 }
 
+// unit-like structs, no fields: https://doc.rust-lang.org/book/ch05-01-defining-structs.html#unit-like-structs-without-any-fields
+struct Unit;
+
 // in Rust, you don't write methods inside a struct, you write methods and you associate them this way
 impl Segment {
     // this is called method because &self is the first parameter, "dot notation" (i.e. an instance is required to use the method)
@@ -86,6 +89,8 @@ fn main() {
     // tuple structs - despite having the same fields, these are two separate types
     struct One(i32, String);
     struct Two(i32, String);
+
+    let _unit = Unit; // this is how a unit-like struct is instantiated
 }
 
 // traits are the equivalent to interfaces in OO languages
