@@ -32,12 +32,13 @@ enum Iota {
     VORDME, // it doesn't compile because the compiler tries to set this to 3, which is already held by "NDB"
 } */
 
-// enums can store a wide variety of types
+// enums can store a wide variety of data
 enum _Message {
     Sender,
     Content(String),
     Timestamp(u128),
     Metadata(u32, String, bool),
+    Move {x: u8, y: u8}, // anonymous struct
 }
 
 fn main() {
