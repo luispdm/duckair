@@ -1,5 +1,6 @@
 #![allow(irrefutable_let_patterns)]
 
+// enum can work similarly to "iota" in go
 enum NavigationAids {
     Ndb,    // 0
     Vor,    // 1
@@ -30,12 +31,18 @@ enum NavigationAids {
     VORDME, // it doesn't compile because the compiler tries to set this to 3, which is already held by "NDB"
 } */
 
+// enums can store a wide variety of types
+enum _Message {
+    Sender,
+    Content(String),
+    Timestamp(u128),
+    Metadata(u32, String, bool),
+}
+
 fn main() {
     // if-else operator
     // same as in go
 
-    // enum
-    // it works similarly to "iota" in go
     println!("NDB:\t{}", NavigationAids::Ndb as u8); // "as u8" required as the compiler can't infer the type
     println!("VOR:\t{}", NavigationAids::Vor as u8);
     println!("VORDME:\t{}", NavigationAids::VorDme as u8);
@@ -45,14 +52,14 @@ fn main() {
     match animal {
         "Duck" => println!("Quack"),
         "Dog" => println!("Woof"),
-        _ => println!("No sound for {}", animal),
+        _ => println!("No sound for {}", animal), // match statements are exhaustive: all possible patterns must be specified. "_" stands for "everything else"
     }
 
     // more match statements
     let frequency: u16 = 201;
     match frequency {
         200..=500 => println!("{}Hz is in range", frequency), // "=500" means inclusive range. Exclusive range syntax is experimental as of 07-2023
-        // the above statement can be rewritten as: frq if frq > 200 && frq <= 500 => println!("{}Hz is a valid frequency", frequency),
+        // the above statement can be rewritten to: frq if frq > 200 && frq <= 500 => println!("{}Hz is a valid frequency", frequency),
         _ => println!("{}Hz is out of range", frequency),
     }
 
@@ -69,7 +76,7 @@ fn main() {
     let _some_one = Some(1);
     let one = 1;
     let two: Option<i32> = None;
-    println!("The sum between 1 and None is: {}", one + two.unwrap_or(0)); // "unwrap" extracts Some from the Option
+    println!("The sum between 1 and None is: {}", one + two.unwrap_or_default()); // "unwrap..." methods extract Some from the Option
 
     /*
      * if let statement: the compiler tests if the assignment "if let ch = anodah_animoh"
