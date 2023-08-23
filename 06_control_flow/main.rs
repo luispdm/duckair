@@ -74,7 +74,7 @@ fn main() {
     /*
      * if let statement: the compiler tests if the assignment "if let ch = anodah_animoh"
      * can be executed.
-     * 
+     *
      * To understand it, better read it backwards:
      * "if anodah_animoh matches ch => execute the code inside the block"
      */
@@ -121,11 +121,13 @@ fn main() {
     // for each
     let nums = [1, 2, 3, 4];
     // for each
-    for num in nums { // you can also do "for num in nums.iter()"
+    for num in nums {
+        // you can also do "for num in nums.iter()"
         println!("{}", num);
     }
     // you can run for loops over ranges
-    for num in 0..4 { // exclusive range (prints 1 to 4)
+    for num in 0..4 {
+        // exclusive range (prints 1 to 4)
         println!("{}", num);
     }
 }

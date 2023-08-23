@@ -21,7 +21,8 @@ impl Segment {
     fn distance(&self) -> f32 {
         println!(
             "calculating distance between {} and {}...",
-            self.start.name, self.end.name // automatic referencing and dereferencing in Rust => don't need a special syntax to use "&self"
+            self.start.name,
+            self.end.name // automatic referencing and dereferencing in Rust => don't need a special syntax to use "&self"
         );
         2513.0
     }
