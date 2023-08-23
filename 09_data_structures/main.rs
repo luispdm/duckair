@@ -15,7 +15,7 @@ struct Segment {
 // unit-like structs, no fields: https://doc.rust-lang.org/book/ch05-01-defining-structs.html#unit-like-structs-without-any-fields
 struct Unit;
 
-// in Rust, you don't write methods inside a struct, you write methods and you associate them this way
+// in Rust you don't write methods inside a struct, you write methods and you associate them to the struct this way
 impl Segment {
     // this is called method because &self is the first parameter, "dot notation" (i.e. an instance is required to use the method)
     fn distance(&self) -> f32 {
@@ -94,6 +94,10 @@ fn main() {
     struct Two(i32, String);
 
     let _unit = Unit; // this is how a unit-like struct is instantiated
+
+    // calling a method of the enum
+    let ip = IpAddrKind::V4(127, 0, 0, 1);
+    ip.i_am();
 }
 
 // traits are the equivalent to interfaces in OO languages
@@ -127,5 +131,18 @@ impl Flight for Airbus {
 impl Flight for Boeing {
     fn is_legal(&self, required_crew: u8, distance: u16) -> bool {
         (self.available_crew >= required_crew) && (self.fuel_range + 280 >= distance)
+    }
+}
+
+// enums can have methods too
+#[derive(Debug)]
+enum IpAddrKind {
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
+
+impl IpAddrKind {
+    fn i_am(&self) {
+        println!("E.T. phone {:#?}", self);
     }
 }
