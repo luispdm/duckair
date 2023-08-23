@@ -65,9 +65,18 @@ fn main() {
         None => println!("No character found at index {}", idx),
     }
 
+    // it is possible to instantiate an Option via Some and None. None wants an explicit type
+    let _some_one = Some(1);
+    let one = 1;
+    let two: Option<i32> = None;
+    println!("The sum between 1 and None is: {}", one + two.unwrap_or(0)); // "unwrap" extracts Some from the Option
+
     /*
      * if let statement: the compiler tests if the assignment "if let ch = anodah_animoh"
      * can be executed.
+     * 
+     * To understand it, better read it backwards:
+     * "if anodah_animoh matches ch => execute the code inside the block"
      */
     let anodah_animoh = "Cat";
     if let ch = anodah_animoh {
