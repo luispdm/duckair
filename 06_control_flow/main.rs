@@ -1,17 +1,18 @@
 #![allow(irrefutable_let_patterns)]
 
-// enum can work similarly to "iota" in go
+// enums
 enum NavigationAids {
-    Ndb,    // 0
-    Vor,    // 1
-    VorDme, // 2
+    Ndb, // each value inside the enum is called "variant"
+    Vor,
+    VorDme,
 }
 
-/* enum NavigationAids {
-    NDB = 5, // 5
-    VOR, // 6
-    VORDME, // 7
-} */
+// enums can work similarly to "iota" in go when we cast the variants to the appropriate type
+enum Iota {
+    Fifth = 5, // 5
+    Sixth,     // 6
+    Seventh,   // 7
+}
 
 /* enum NavigationAids {
     NDB, // 0
@@ -43,9 +44,13 @@ fn main() {
     // if-else operator
     // same as in go
 
-    println!("NDB:\t{}", NavigationAids::Ndb as u8); // "as u8" required as the compiler can't infer the type
+    // enums can work similarly to "iota" in go when we cast the variants to the appropriate type
+    println!("NDB:\t{}", NavigationAids::Ndb as u8); // "as u8" required as the compiler can't infer the type of the variant
     println!("VOR:\t{}", NavigationAids::Vor as u8);
     println!("VORDME:\t{}", NavigationAids::VorDme as u8);
+    println!("{:?}", Iota::Fifth as u8);
+    println!("{:?}", Iota::Sixth as u8);
+    println!("{:?}", Iota::Seventh as u8);
 
     // match statement: it works like switch-case in other languages
     let animal = "Crocodile";
