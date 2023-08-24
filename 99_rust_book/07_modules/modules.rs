@@ -1,3 +1,12 @@
+/*
+ * Here i am declaring the child module "hosting" whose content
+ * can be found at "modules/hosting.rs"
+ *
+ * Child modules declared in another file MUST live in a folder
+ * whose name is that of the parent module
+ */
+pub mod hosting;
+
 // this is how you declare submodules
 pub mod outer {
     pub mod inner {
