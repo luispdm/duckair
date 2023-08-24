@@ -64,3 +64,7 @@ path = "92_project/main.rs"
 [[bin]]
 name = "project_3"
 path = "93_project/main.rs"
+
+[[bin]]
+name = "b_modules"
+path = "99_rust_book/07_modules/main.rs"
