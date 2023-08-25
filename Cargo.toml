@@ -6,6 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+unicode-segmentation = "1.10.1"
 
 # Required for rust-analyzer and clippy to work in VSCode when multiple Cargo.toml files are stored in the repo
 [workspace]
@@ -68,3 +69,7 @@ path = "93_project/main.rs"
 [[bin]]
 name = "b_modules"
 path = "99_rust_book/07_modules/main.rs"
+
+[[bin]]
+name = "b_collections"
+path = "99_rust_book/08_collections/main.rs"
