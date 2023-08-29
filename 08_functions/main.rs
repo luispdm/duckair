@@ -51,6 +51,17 @@ fn main() {
             }
         },
     } */
+    // less-verbose alternative
+    // let f = File::open("my/path").unwrap_or_else(|err| {
+    //     if err.kind() == ErrorKind::NotFound {
+    //         File::create("my/path").unwrap_or_else(|err| {
+    //             panic!("Impossible to create the file");
+    //         })
+    //     } else {
+    //         panic!("Impossible to open the file");
+    //     }
+    // });
+    // if the only code to be executed is just a panic, "unwrap" can be used instead of "unwrap_or_else"
 
     // error propagation
     let path = "08_functions/dummy.md";
