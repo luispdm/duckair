@@ -101,10 +101,15 @@ fn _panic_vec() {
 }
 
 // TODO need to know what "Box" and "dyn" are used for
+// Box<dyn Error> is not used much in real-world Rust
 fn read_file(p: &str) -> Result<String, Box<dyn Error>> {
     // "?" makes the function return if "open" fails. Same thing for "read_to_string"
     let mut handle = File::open(p)?;
     let mut data = String::new();
     handle.read_to_string(&mut data)?;
     Ok(data)
+    /*
+     * To use "?" in main you must change its signature to:
+     * fn main() -> Result<(), ErrType>, as it normally doesn't return anything!
+     */
 }
