@@ -24,7 +24,7 @@ fn main() {
     mv.push("two");
     mv.push("three");
     mv.push("four");
-    mv.pop();
+    mv.pop(); // it returns an Option! not the actual value!
     mv.insert(3, "four");
     mv.remove(3);
     // as for arrays, "iter()" is not mandatory to print the elements of a vector
