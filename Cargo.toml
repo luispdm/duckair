@@ -73,3 +73,7 @@ path = "99_rust_book/07_modules/main.rs"
 [[bin]]
 name = "b_collections"
 path = "99_rust_book/08_collections/main.rs"
+
+[[bin]]
+name = "b_traits"
+path = "99_rust_book/10_traits/main.rs"
