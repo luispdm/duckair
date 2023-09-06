@@ -43,6 +43,17 @@ impl Summary for Tweet {
     }
 }
 
+trait AppendBar {
+    fn append_bar(self) -> Self;
+}
+
+// Rust gives the possibility to implement traits for types of the standard library too
+impl AppendBar for String {
+    fn append_bar(self) -> Self {
+        format!("{self}Bar")
+    }
+}
+
 // This is how polymorphism is achieved in Rust.
 // It's syntactic sugar of what's below
 fn notify(item: &impl Summary) {
