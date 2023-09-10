@@ -41,7 +41,7 @@ impl<T, U> WithGenerics<T, U> {
 }
 
 // this tells the compiler that T must implement the trait "Add" in order to be used by the method
-// this is called "trait bound" (more at 99_rust_book/10_traits)
+// this is called "trait bound" (more at 99_rust_book/10_1_traits)
 fn add<T: Add<Output = T>>(a: T, b: T) -> T {
     a + b
 }
