@@ -76,4 +76,8 @@ path = "99_rust_book/08_collections/main.rs"
 
 [[bin]]
 name = "b_traits"
-path = "99_rust_book/10_traits/main.rs"
+path = "99_rust_book/10_1_traits/main.rs"
+
+[[bin]]
+name = "b_lifetimes"
+path = "99_rust_book/10_3_lifetimes/main.rs"

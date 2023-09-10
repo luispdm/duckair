@@ -50,7 +50,7 @@ fn main() {
     }
     println!("{}", example); // prints: "changing" - borrowing ended as the borrower went out of scope here
 
-    // lifetime - it only applies to data stored on the heap
+    // lifetime - it only applies to references
     let _outer_int;
     {
         let inner_int = 5;
@@ -66,16 +66,23 @@ fn main() {
     println!("{}", which_lifetime(&p1, &p2));
 }
 
-/* fn ret_bad_ref<'life>() -> &'life i32 {
-    let val = 5;
-    return &val; // cannot return a reference to a local variable as it will be deallocated => dangling reference
-} */
+/*
+ * It does not compile because the method cannot return a reference to a local variable
+ * as it will be deallocated => dangling reference.
+ * 
+ * To solve this, consider returning an owned type like String, which transfers ownership.
+ */
+// fn ret_bad_ref<'l>() -> &'l str {
+//     let ret = String::from("a");
+//     ret.as_str()
+// }
 
 fn ok_ref(val: &i32) -> &i32 {
     val // the scope sending the reference is the same getting the reference back => no need to specify lifetime and no dangling references
 }
 
 // need to specify the lifetime of the param you are returning as there are 2 params in the function
+// no need to specify the lifetime of p2 as we are never returning it
 fn which_lifetime<'a>(p1: &'a i32, p2: &i32) -> &'a i32 {
     if p1 < p2 {
         return p1;
