@@ -68,15 +68,20 @@ fn main() {
     let novel = String::from("Call me Ishmael. Some years ago...");
     let i: ImportantExcerpt;
     {
-        let first_sentence = novel
+        let first_sentence = String::from(novel
             .split('.')
             .next()
-            .expect("Could not find the first sentence");
+            .expect("Could not find the first sentence"));
         i = ImportantExcerpt {
-            part: first_sentence,
+            part: &first_sentence,
         };
+        // "i" cannot be used outside of this block as we would have a
+        // dangling reference because "first_sentence" was declared
+        // inside this block (similar example to the usage of "longest")
+        println!("{}", i.return_part(&ann));
     }
-    println!("{}", i.return_part(&ann));
+    // it does not compile!
+    // println!("{}", i.return_part(&ann));
 
     /*
      * &'static = the reference can live as long as the duration of the program
@@ -87,6 +92,8 @@ fn main() {
 }
 
 // lifetimes in structs - the following struct cannot outlive the reference passed to part
+// try not to resource to lifetimes in structs as a first solution, try using owned data
+// as the program will be easier to read, to work with and to refactor
 struct ImportantExcerpt<'a> {
     part: &'a str,
 }
