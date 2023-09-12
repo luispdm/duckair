@@ -1,3 +1,9 @@
+/*
+ * It is best practice that the unit tests live in the same file
+ * as the product code. You could move the unit tests to a separate
+ * file/folder, but Rust doesn't make this easy (as of 2021-05-01,
+ * Rust book course: https://youtu.be/-L4nKAlmH3M)
+ */
 pub fn add(left: usize, right: usize) -> usize {
     left + right
 }

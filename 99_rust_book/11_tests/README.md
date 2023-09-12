@@ -29,3 +29,5 @@ cargo test add # it runs all the tests whose name starts with "add"
 cargo test lib:: # it runs all the tests in the "lib" module
 ```
 `cargo test --ignored` runs only the ignored tests
+
+`cargo test --test integration_test` to run only the integration tests in the file `tests/integration_test.rs`
