@@ -11,7 +11,8 @@ unicode-segmentation = "1.10.1"
 # Required for rust-analyzer and clippy to work in VSCode when multiple Cargo.toml files are stored in the repo
 [workspace]
 members = [
-    "13_module"
+    "13_module",
+    "99_rust_book/11_tests"
 ]
 
 [[bin]]
