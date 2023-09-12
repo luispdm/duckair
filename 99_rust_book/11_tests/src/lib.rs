@@ -3,10 +3,10 @@ pub fn add(left: usize, right: usize) -> usize {
 }
 
 pub fn is_even(num: i32) -> bool {
-    num%2 == 0
+    num % 2 == 0
 }
 
-#[cfg(test)]
+#[cfg(test)] // this tells Rust to compile this code when we run "cargo test"
 mod tests {
     use super::*;
 
@@ -32,7 +32,7 @@ mod tests {
     // when there's no "expected", you are telling Rust that no matter what
     // the reason behind panicking is, the test must pass (ofc if the test
     // doesn't panic, the test fails)
-    #[should_panic(expected="on purpose")]
+    #[should_panic(expected = "on purpose")]
     fn panic_should_be_ok() {
         panic!("on purpose");
     }
@@ -56,5 +56,10 @@ mod tests {
         } else {
             Err(String::from("2 + 3 must be 4!"))
         }
+    }
+    #[test]
+    #[ignore = "broken - fix me"] // cargo won't run this test by default
+    fn i_wont_run() {
+
     }
 }
