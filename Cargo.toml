@@ -12,7 +12,8 @@ unicode-segmentation = "1.10.1"
 [workspace]
 members = [
     "13_module",
-    "99_rust_book/11_tests"
+    "99_rust_book/11_tests",
+    "99_rust_book/12_cli_app"
 ]
 
 [[bin]]
