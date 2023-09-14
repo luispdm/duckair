@@ -18,6 +18,9 @@ struct Config {
 
 impl Config {
     fn new(args: &[String]) -> Config {
+        if args.len() < 3 {
+            panic!("not enought arguments: found {}, want 3", args.len());
+        }
         // clone not efficient because it copies data, but easier than using lifetimes for now
         let query = args[1].clone();
         let filename = args[2].clone();
