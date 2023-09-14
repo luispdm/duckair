@@ -3,7 +3,7 @@ use std::{env, fs};
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let config = parse_config(&args);
+    let config = Config::new(&args);
     println!("searching for {}", config.query);
     println!("in {}", config.filename);
 
@@ -16,9 +16,11 @@ struct Config {
     filename: String,
 }
 
-fn parse_config(args: &[String]) -> Config {
-    // clone not efficient because it copies data, but easier than using lifetimes for now
-    let query = args[1].clone();
-    let filename = args[2].clone();
-    Config { query, filename }
+impl Config {
+    fn new(args: &[String]) -> Config {
+        // clone not efficient because it copies data, but easier than using lifetimes for now
+        let query = args[1].clone();
+        let filename = args[2].clone();
+        Config { query, filename }
+    }
 }
