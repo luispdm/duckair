@@ -54,7 +54,15 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
 }
 
 pub fn search_case_insensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-    vec![]
+    let mut res = vec![];
+
+    for l in content.lines() {
+        if l.to_lowercase().contains(&query.to_lowercase()) {
+            res.push(l)
+        }
+    }
+
+    res
 }
 
 #[cfg(test)]
@@ -71,7 +79,7 @@ mod test {
 
     #[test]
     fn case_insensitive() {
-        let query = "me";
+        let query = "ME";
         let content = "hey\nit's me\nnot mr. MEME";
 
         assert_eq!(
