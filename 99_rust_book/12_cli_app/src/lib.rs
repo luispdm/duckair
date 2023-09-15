@@ -40,7 +40,7 @@ impl Config {
     }
 }
 
-pub fn search<'a>(query: &str, file_content: &'a str) -> Vec<&'a str> {
+pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     vec![]
 }
 
@@ -51,8 +51,8 @@ mod test {
     #[test]
     fn one_result() {
         let query = "me";
-        let file_content = "hey\nit's me\nnot mr. MEME";
+        let content = "hey\nit's me\nnot mr. MEME";
 
-        assert_eq!(vec!["it's me"], search(query, file_content));
+        assert_eq!(vec!["it's me"], search(query, content));
     }
 }
