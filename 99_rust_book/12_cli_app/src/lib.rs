@@ -2,7 +2,7 @@ use std::{error::Error, fs};
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let content = fs::read_to_string(config.filename)?;
-    
+
     for l in search(&config.query, &content) {
         println!("{}", l);
     }
@@ -63,5 +63,13 @@ mod test {
         let content = "hey\nit's me\nnot mr. MEME";
 
         assert_eq!(vec!["it's me"], search(query, content));
+    }
+
+    #[test]
+    fn case_insensitive() {
+        let query = "me";
+        let content = "hey\nit's me\nnot mr. MEME";
+
+        assert_eq!(vec!["it's me", "not mr. MEME"], search_case_insensitive(query, content));
     }
 }
