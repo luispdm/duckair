@@ -2,7 +2,10 @@ use std::{error::Error, fs};
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let content = fs::read_to_string(config.filename)?;
-    println!("with text:\n{}", content);
+    
+    for l in search(&config.query, &content) {
+        println!("{}", l);
+    }
 
     Ok(())
 }
@@ -41,7 +44,13 @@ impl Config {
 }
 
 pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-    vec![]
+    let mut res = vec![];
+    for l in content.lines() {
+        if l.contains(query) {
+            res.push(l);
+        }
+    }
+    res
 }
 
 #[cfg(test)]
