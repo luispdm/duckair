@@ -39,3 +39,16 @@ impl Config {
         Ok(Config { query, filename })
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn one_result() {
+        let query = "me";
+        let file_content = "hey\nit's me\nnot mr. MEME";
+
+        assert_eq!(vec!["it's me"], search(query, file_content));
+    }
+}
