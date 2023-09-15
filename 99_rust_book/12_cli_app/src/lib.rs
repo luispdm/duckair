@@ -53,6 +53,10 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     res
 }
 
+pub fn search_case_insensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
+    vec![]
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -70,6 +74,9 @@ mod test {
         let query = "me";
         let content = "hey\nit's me\nnot mr. MEME";
 
-        assert_eq!(vec!["it's me", "not mr. MEME"], search_case_insensitive(query, content));
+        assert_eq!(
+            vec!["it's me", "not mr. MEME"],
+            search_case_insensitive(query, content)
+        );
     }
 }
