@@ -1,9 +1,15 @@
-use std::{error::Error, fs};
+use std::{error::Error, fs, env};
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let content = fs::read_to_string(config.filename)?;
 
-    for l in search(&config.query, &content) {
+    let res = if config.case_sensitive {
+        search_case_sensitive(&config.query, &content)
+    } else {
+        search(&config.query, &content)
+    };
+
+    for l in res {
         println!("{}", l);
     }
 
@@ -13,6 +19,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 pub struct Config {
     pub query: String,
     pub filename: String,
+    pub case_sensitive: bool,
 }
 
 impl Config {
@@ -39,11 +46,13 @@ impl Config {
         // clone not efficient because it copies data, but easier than using lifetimes for now
         let query = args[1].clone();
         let filename = args[2].clone();
-        Ok(Config { query, filename })
+        let case_sensitive = env::var("CASE_SENSITIVE").is_ok();
+
+        Ok(Config { query, filename, case_sensitive })
     }
 }
 
-pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
+pub fn search_case_sensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     let mut res = vec![];
     for l in content.lines() {
         if l.contains(query) {
@@ -53,15 +62,13 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     res
 }
 
-pub fn search_case_insensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
+pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     let mut res = vec![];
-
     for l in content.lines() {
         if l.to_lowercase().contains(&query.to_lowercase()) {
             res.push(l)
         }
     }
-
     res
 }
 
@@ -70,11 +77,11 @@ mod test {
     use super::*;
 
     #[test]
-    fn one_result() {
+    fn case_sensitive() {
         let query = "me";
         let content = "hey\nit's me\nnot mr. MEME";
 
-        assert_eq!(vec!["it's me"], search(query, content));
+        assert_eq!(vec!["it's me"], search_case_sensitive(query, content));
     }
 
     #[test]
@@ -84,7 +91,7 @@ mod test {
 
         assert_eq!(
             vec!["it's me", "not mr. MEME"],
-            search_case_insensitive(query, content)
+            search(query, content)
         );
     }
 }
