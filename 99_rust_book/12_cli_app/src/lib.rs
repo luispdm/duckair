@@ -3,6 +3,7 @@ use std::{error::Error, fs, env};
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let content = fs::read_to_string(config.filename)?;
 
+    // remember: Rust lets you return values from if statements
     let res = if config.case_sensitive {
         search_case_sensitive(&config.query, &content)
     } else {
@@ -65,6 +66,7 @@ pub fn search_case_sensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str> 
 pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     let mut res = vec![];
     for l in content.lines() {
+        // l and query are not being modified as "to_lowercase" returns a String
         if l.to_lowercase().contains(&query.to_lowercase()) {
             res.push(l)
         }
