@@ -45,17 +45,31 @@ fn main() {
      * FnOnce: take ownership of the input parameters and can only be called once
      *
      * Rust is able to infer which kind of Trait the closure is implementing automatically.
-     * We can also force a closure to take ownership of a value. This is useful when passing
-     * data between threads (example at "12_concurrency/main.rs").
-     * See example below
+     * We can also force a closure to take ownership of a value with the "move" keyword.
+     * This is useful when passing data between threads (example at "12_concurrency/main.rs").
+     *
+     * Note: move closures may still implement Fn or FnMut, even though
+     * they capture variables by move. This is because the traits implemented
+     * by a closure type are determined by what the closure does with captured values,
+     * not how it captures them.
+     *
      */
     let x = vec![1];
-    // taking ownership takes place with the "move" keyword
+    // the following implements Fn despite the use of the move keyword
     let equal_to_x = move |z| z == x;
     let zz = vec![1];
     equal_to_x(zz);
     // equal_to_x(zz); // "use of moved value zz"
     // println!("{:?}", x); // "borrow of moved value x" - the closure has taken ownership of x
+    let once = fn_once();
+    once();
+    // "use of moved value once - this value implements FnOnce, which causes it to be moved when called"
+    // once();
+}
+
+fn fn_once() -> impl FnOnce() {
+    let text = "FnOnce".to_owned();
+    move || println!("This is a: {text}")
 }
 
 // the power of closures: using closures & hashmaps to avoid repeating expensive calculations
