@@ -48,11 +48,11 @@ fn main() {
      * We can also force a closure to take ownership of a value. This is useful when passing
      * data between threads (example at "12_concurrency/main.rs").
      * See example below
-    */
+     */
     let x = vec![1];
     // taking ownership takes place with the "move" keyword
     let equal_to_x = move |z| z == x;
-    let zz = vec![1]; 
+    let zz = vec![1];
     equal_to_x(zz);
     // equal_to_x(zz); // "use of moved value zz"
     // println!("{:?}", x); // "borrow of moved value x" - the closure has taken ownership of x
