@@ -54,7 +54,7 @@ fn main() {
     let equal_to_x = move |z| z == x;
     let zz = vec![1]; 
     equal_to_x(zz);
-    // equal_to_x(zz); // "use of moved value z" - closure is of type "FnOnce" => it can only be called once!
+    // equal_to_x(zz); // "use of moved value zz"
     // println!("{:?}", x); // "borrow of moved value x" - the closure has taken ownership of x
 }
 
@@ -104,5 +104,4 @@ fn generate_workout(intensity: u32, random: u32) {
     } else {
         println!("Run {} minutes", cache.value(intensity));
     }
-    println!("{:?}", cache.values[&intensity]);
 }
