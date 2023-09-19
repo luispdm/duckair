@@ -64,6 +64,17 @@ fn main() {
     println!("{:?}", count.next()); // None
 
     println!("{}", the_power_of_iterators());
+
+    /*
+     * Are there any performance penalties in using loops or iterators?
+     * No. Rust follows the zero-cost abstraction principle.
+     *
+     * Zero-cost abstraction principle from the Rust book:
+     * What you don’t use, you don’t pay for.
+     * What you do use, you couldn’t hand code any better.
+     *
+     * Link: https://doc.rust-lang.org/book/ch13-04-performance.html
+     */
 }
 
 #[derive(Debug)]
