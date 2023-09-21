@@ -120,9 +120,9 @@ impl Iterator for Counter {
  */
 fn the_power_of_iterators() -> u32 {
     Counter::new()
-        // (1, 2) (2, 3) (coming from [1, 2, 3] & [2, 3])
+        // [1, 2, 3] & [2, 3] transformed into the tuples: (1, 2) (2, 3)
         .zip(Counter::new().skip(1))
-         // 2, 6 (coming from 1*2 & 2*3)
+         // 1*2 & 2*3 => 2, 6
         .map(|(a, b)| a * b)
         // 6
         .filter(|x| x % 3 == 0)

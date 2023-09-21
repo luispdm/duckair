@@ -61,16 +61,17 @@ fn main() {
     equal_to_x(zz);
     // equal_to_x(zz); // "use of moved value zz"
     // println!("{:?}", x); // "borrow of moved value x" - the closure has taken ownership of x
+    // let's create a function that implements FnOnce
+    fn fn_once() -> impl FnOnce() {
+        let text = "FnOnce".to_owned();
+        move || println!("This is a: {text}")
+    }
     let once = fn_once();
     once();
     // "use of moved value once - this value implements FnOnce, which causes it to be moved when called"
     // once();
 }
 
-fn fn_once() -> impl FnOnce() {
-    let text = "FnOnce".to_owned();
-    move || println!("This is a: {text}")
-}
 
 // the power of closures: using closures & hashmaps to avoid repeating expensive calculations
 struct Cache<T, U>
