@@ -4,7 +4,7 @@ Examples on the Rust programming language coming from the Pluralsight course "Ru
 ## Utils
 ```shell
 cargo r --bin $BINARY_NAME # to run of the binaries listed in Cargo.toml
-cargo r --package $BINARY_PACKAGE_NAME # to run one of the binary packages (the folders with the main.rs files that have their own Cargo.toml) located in this repo
+cargo r --package $BINARY_PACKAGE_NAME # to run one of the binary packages located in this repo (the folders with the main.rs files that have their own Cargo.toml)
 ```
 
 ## Links
