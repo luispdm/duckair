@@ -1,4 +1,4 @@
-# The Rust programming languages
+# The Rust programming language
 Examples on the Rust programming language coming from the Pluralsight course "Rust fundamentals" and the "Let's Get Rusty" video series following the Rust Book.
 
 ## More examples on cargo
