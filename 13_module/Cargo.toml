@@ -8,6 +8,8 @@ repository = "https://github.com/luispdm/duckair"
 
 [dependencies]
 rand = "0.8.5"
+# how to import dependencies from other packages living in the same workspace
+lib_demo_luispdm = { path = "../99_rust_book/14_crates" }
 
 [[bin]]
 name = "demo"
