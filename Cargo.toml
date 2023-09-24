@@ -14,8 +14,19 @@ members = [
     "13_module",
     "99_rust_book/11_tests",
     "99_rust_book/12_cli_app",
-    "99_rust_book/13_3_cli_app_iterators"
+    "99_rust_book/13_3_cli_app_iterators",
+    "99_rust_book/14_crates"
 ]
+
+# Rust offers two release profiles: dev (cargo --build) and release (cargo build --release).
+# These profiles can be tuned with a number: the lower the number, the lesser the optimization
+# and consequently, the faster the build. Below are the default values (0 for the dev profile
+# makes sense as you want fast builds when you write code).
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
 
 [[bin]]
 name = "data_types"
