@@ -106,4 +106,4 @@ path = "99_rust_book/13_2_iterators/main.rs"
 
 [[bin]]
 name = "b_box"
-path = "99_rust_book/15_1_box_sp/main.rs"
+path = "99_rust_book/15_1_box_smart_pointers/main.rs"
