@@ -23,8 +23,8 @@ fn main() {
     // when b goes out of scope, the smart pointer on the stack and the data on the heap
     // the smart pointer points to will both be deallocated
     /*
-     * Box doesn't have any overhead as it doesn't have many capabilities, so you'd typically
-     * use it in the following situations:
+     * Box doesn't have any overhead as it doesn't have many capabilities. You'd typically
+     * use Box in the following situations:
      * - when you are dealing with a large amount of data and you wanna transfer its ownership
      *   without copying it
      * - when you own a value and you want that value to only implement a specific trait,
@@ -40,21 +40,21 @@ use List::{Cons, Nil};
 // recursive types: when Box is useful - Cons lists: https://en.wikipedia.org/wiki/Cons
 /*
  * At compile time, Rust needs to know the amount of space enums take on the stack.
- * Because it's an enum, there can only be one existing variant at a time, so the most space the
- * enum is gonna take is equal to the most space the largest variant is going to take.
+ * Because of the nature of enums, there can only be one existing variant at a time, so the
+ * most space the enum is gonna take is equal to the most space the largest variant is going to take.
  * For example, the size of the enum "_Message" is equal to the size of its variant "Metadata" (the
  * biggest one as it is a tuple with 3 values).
  * 
  * If I were to remove the Box smart pointer from the List enum, I will see the compilation error:
  * "recursive type `ListInfSize` has infinite size - recursive without indirection". Why?
- * To calculate the space List needs, Rust calculate that for Nil and when it will check the space
+ * To calculate the space List needs, Rust calculates that for Nil and when it will check the space
  * Cons takes, it will need to know how much space List takes, because List is a member of the Cons
  * tuple, so it will check the enum (List) again, and again it will check Cons and it will need to
  * know how much space List takes... Recursive problem!
  *
  * So how does the Box smart pointer fix this recursive problem?
- * This time, when Rust checks the amount of space Cons takes, it knows that Box<List> is a fixed-size
- * smart pointer living on the stack, pointing to an arbitrary amount of data on the heap.
+ * This time, when Rust checks the amount of space Cons takes, it knows that Box is a fixed-size
+ * smart pointer living on the stack, pointing to an arbitrary amount of data on the heap (List).
  */
 
  #[derive(Debug)]
