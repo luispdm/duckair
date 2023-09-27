@@ -3,7 +3,7 @@ use std::ops::Deref;
 fn main() {
     let x = 5;
     let y = &x;
-     // * = deref operator, same as in other languages
+    // * = deref operator, same as in other languages
     assert_eq!(5, *y);
     /*
      * this time z points to a copy of x because x is a primitive and when
@@ -15,8 +15,39 @@ fn main() {
     assert_eq!(5, *z);
 
     let a = MyBox::new(x);
-    // thanks to the deref method, the compiler knows how to perform "*a"
+    // thanks to the deref method, the compiler knows what to do when it finds "*a"
     assert_eq!(5, *a); // syntactic sugar for: *(a.deref())
+
+    // implicit deref coercion: converting a reference of a type to a reference
+    // of another type
+    let b = MyBox::new(String::from("bbb"));
+    hello(&b);
+    // &MyBox<String> -> &String -> &str
+    // this works because both MyBox and String implement the Deref trait.
+    // if Rust didn't have automatic deref coercion, we'd have had to write the
+    // above statement as:
+    hello(&(*b)[..]);
+    // ...worsening the readability of our code significantly
+
+    /*
+     * Rust does automatic deref coercion when it finds types and trait implementations
+     * in the following three cases:
+     * - from &T to &U when T: Deref<Target=U>
+     * - from &mut T to &mut U when T: DerefMut<Target=U>
+     * - from &mut T to &U when T: Deref<Target=U>
+     * (taken from the Rust book: https://doc.rust-lang.org/book/ch15-02-deref.html#how-deref-coercion-interacts-with-mutability)
+     * 
+     * Deref coercion cannot be performed from &T to &mut U because of the
+     * borrowing rules: "at any given time, you can have either one mutable reference or
+     * any number of immutable references."
+     * In this case, Rust cannot guarantee &T is the only existing immutable reference.
+     * Going from &mut T to &U does not violate the borrowing rules because the compiler is sure
+     * that &mut T is the only mutable reference out there.
+     */
+}
+
+fn hello(name: &str) {
+    println!("hello {}", name);
 }
 
 // defining a tuple struct that implements the Deref trait
@@ -33,7 +64,7 @@ impl<T> MyBox<T> {
 
 impl<T> Deref for MyBox<T> {
     type Target = T;
-    
+
     /*
      * Why does deref return &T and not T?
      * Because if deref returned T, it would move ownership of T outside of
@@ -41,8 +72,12 @@ impl<T> Deref for MyBox<T> {
      * we don't usually want (remember, in many cases smart pointers own
      * the data they point to)
      */
-    fn deref(&self) -> &T { // &Self::Target works too
+    fn deref(&self) -> &T { // -> &Self::Target works too
         &self.0
     }
-    // TODO continues at 6:40
+    /*
+     * As the Deref trait is used to override the dereference operator for
+     * immutable references, there's also "DerefMut", which lets you override
+     * the dereference operator for mutable references
+     */
 }
