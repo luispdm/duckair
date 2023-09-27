@@ -107,3 +107,7 @@ path = "99_rust_book/13_2_iterators/main.rs"
 [[bin]]
 name = "b_box"
 path = "99_rust_book/15_1_box_smart_pointers/main.rs"
+
+[[bin]]
+name = "b_deref"
+path = "99_rust_book/15_2_deref_trait/main.rs"
