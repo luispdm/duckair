@@ -119,3 +119,7 @@ path = "99_rust_book/15_3_drop_trait/main.rs"
 [[bin]]
 name = "b_rc"
 path = "99_rust_book/15_4_reference_counting/main.rs"
+
+[[bin]]
+name = "b_refcell"
+path = "99_rust_book/15_5_interior_mutability/main.rs"

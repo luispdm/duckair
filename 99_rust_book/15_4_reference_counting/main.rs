@@ -32,6 +32,7 @@ fn main() {
     // let c = Cons(3, Box::new(a)); // error - "use of moved value"
 
     let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
+    // *a = Cons(1, Rc::new(Nil)); // error - "Rc doesn't implement DerefMut" (Rc = immutable refs only)
     println!("allocating a, reference counter is at: {}", Rc::strong_count(&a)); // 1
     // Rc::clone(&a) gives us an owned value, but it doesn't perform a deep clone of a,
     // it just increments the reference counter of a
