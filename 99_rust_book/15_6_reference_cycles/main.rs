@@ -62,16 +62,29 @@ fn main() {
     // println!("a tail: {:?}", a.tail());
     // println!("b tail: {:?}", b.tail());
 
-    // the follwing shows how to solve the reference cycle issue with weak pointers and a tree structure
+    // the follwing shows how to solve the reference cycle issue with weak pointers and a tree structure as example
     /*
-     * With Rc, references own the data they point to
-     * // TODO finish me: https://youtu.be/pIVZRDFAUyc?si=MVZtgQYAQrDsVN4T&t=550
+     * First look at the code below and then come back here. Check the "Node" struct especially.
+     *
+     * Why isn't the field "parent" of "Node" a "RefCell<Rc<Node>>"?
+     * There are two reasons, one is related with the logic of tree data structures and the other with
+     * reference cycles.
+     * 1. Mutual owning references would never allow either Rc to be dropped (reference cycle between
+     *    parent and children).
+     * 2. Even if #1 was false, it wouldn't make sense for parent to be a RefCell<Rc...:
+     *    with Rc, references own the data they point to. If parent were to be a RefCell<Rc..., when
+     *    "leaf" is dropped, "branch" would be dropped too! In trees it's usually the other way around:
+     *    if branch is dropped, leaf is dropped. A branch should own its leaves, not the opposite.
+     *    That's why children is of type RefCell<Vec<Rc.
+     *
+     * Parent is a RefCell<Weak<Node>> because with Weak, references do not own the data they point to.
+     * If leaf were to be dropped, branch would continue existing.
      */
     println!("--------- weak pointers to the rescue! ---------");
     #[derive(Debug)]
     struct Node {
         value: i32,
-        parent: RefCell<Weak<Node>>, // if RefCell were to wrap an Rc, we'd have a reference cycle
+        parent: RefCell<Weak<Node>>,
         children: RefCell<Vec<Rc<Node>>>,
     }
     let leaf = Rc::new(Node{
@@ -79,15 +92,26 @@ fn main() {
         parent: RefCell::new(Weak::new()),
         children: RefCell::new(vec![]),
     });
-    println!("leaf strong & weak count after creation: {}, {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));
-    println!("leaf's parent after creation: {:?}", leaf.parent.borrow().upgrade());
-    let branch = Rc::new(Node{
-        value: 4,
-        parent: RefCell::new(Weak::new()),
-        children: RefCell::new(vec![Rc::clone(&leaf)]),
-    });
-    println!("branch strong & weak count after creation: {}, {}", Rc::strong_count(&branch), Rc::weak_count(&branch));
-    println!("leaf strong & weak count after branch is created: {}, {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));
-    *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
-    println!("leaf's parent after assigning branch to leaf.parent: {:?}", leaf.parent.borrow().upgrade());
+    println!("leaf strong & weak count after creation: {}, {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf)); // 1, 0
+    // whenever we want to see or modify the value inside Weak we have to call the "upgrade" method:
+    // the method tries to convert Weak to Rc and it returns an Option because the value referenced by Weak
+    // might have been dropped and Weak has no idea about it
+    println!("leaf's parent after creation: {:?}", leaf.parent.borrow().upgrade()); // None
+    {
+        let branch = Rc::new(Node{
+            value: 4,
+            parent: RefCell::new(Weak::new()),
+            children: RefCell::new(vec![Rc::clone(&leaf)]),
+        });
+        *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+        println!("branch strong & weak count after creation: {}, {}", Rc::strong_count(&branch), Rc::weak_count(&branch));  // 1, 1
+        println!("leaf strong & weak count after branch is created: {}, {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));  // 2, 0
+        // downgrade converts Rc to Weak
+        println!("leaf's parent after assigning branch to leaf.parent: {:?}", leaf.parent.borrow().upgrade()); // Some(branch)
+    }
+    // here the strong count of branch is 0 and the weak count of branch is 1 (weakly-referenced by leaf) => branch is dropped
+    // the fact that weak is still 1 doesn't influence the decision to drop branch
+    println!("leaf strong & weak count after branch is dropped: {}, {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf)); // 1, 0
+    println!("leaf's parent after assigning branch to leaf.parent: {:?}", leaf.parent.borrow().upgrade()); // None
+    // all the logic managing the strong count and weak count of Rc & Weak is managed by their respective implementation of Drop
 }
