@@ -39,21 +39,21 @@ fn main() {
      * Memory when a and b are instantiated:
      * (stack -> heap)
      * a -> 'a(5, Nil) // a ref count 2
-     * b -> 'b(10, 'a) // b ref count 1
+     * b -> 'b(4, 'a) // b ref count 1
      *
      * Memory when a is modified:
      * (stack -> heap)
-     * a -> 'a(05, 'b) // a ref count 2
-     * b -> 'b(10, 'a) // b ref count 2
+     * a -> 'a(5, 'b) // a ref count 2
+     * b -> 'b(4, 'a) // b ref count 2
      *
      * At this point, if we were to call a.tail() or b.tail(), we'd have a stack overflow and
      * a memory leak. Why?
      * 1. Stack overflow: if we do b.tail(), the function returns 'a, which in turn returns 'b and so on.
      *    It basically gets stuck in a endless loop until the stack is overflowed.
      * 2. Memory leak: at the end of main, b gets cleaned up (stack clean up is LIFO), but not
-     *    the value it points to on the heap, (10, 'a), as it is still referenced by a (a tail is 'b).
+     *    the value it points to on the heap, (4, 'a), as it is still referenced by a (a tail is 'b).
      *    Then a is dropped, but not the value on the heap it points to, (5, 'b), as it is still referenced
-     *    by the value on the heap b used to point to: (10, 'a). b was dropped but its value on the heap still exists!
+     *    by the value on the heap b used to point to: (4, 'a). b was dropped but its value on the heap still exists!
      *    We ended up with a memory leak as both values on the heap were not cleaned up.
      * To visualize the memory in this situation, check the Let's Get Rusty video on this Rust book chapter:
      * https://youtu.be/pIVZRDFAUyc?si=U71HTNFkMXOIxn3o&t=296
@@ -67,8 +67,8 @@ fn main() {
      * First look at the code below and then come back here. Check the "Node" struct especially.
      *
      * Why isn't the field "parent" of "Node" a "RefCell<Rc<Node>>"?
-     * There are two reasons, one is related with the logic of tree data structures and the other with
-     * reference cycles.
+     * There are two reasons, one is related with reference cycles and the other with the
+     * logic of tree data structures.
      * 1. Mutual owning references would never allow either Rc to be dropped (reference cycle between
      *    parent and children).
      * 2. Even if #1 was false, it wouldn't make sense for parent to be a RefCell<Rc...:
@@ -103,10 +103,10 @@ fn main() {
             parent: RefCell::new(Weak::new()),
             children: RefCell::new(vec![Rc::clone(&leaf)]),
         });
+        // downgrade converts Rc to Weak
         *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
         println!("branch strong & weak count after creation: {}, {}", Rc::strong_count(&branch), Rc::weak_count(&branch));  // 1, 1
         println!("leaf strong & weak count after branch is created: {}, {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));  // 2, 0
-        // downgrade converts Rc to Weak
         println!("leaf's parent after assigning branch to leaf.parent: {:?}", leaf.parent.borrow().upgrade()); // Some(branch)
     }
     // here the strong count of branch is 0 and the weak count of branch is 1 (weakly-referenced by leaf) => branch is dropped

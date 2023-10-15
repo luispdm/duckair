@@ -30,7 +30,7 @@ fn main() {
     // ...worsening the readability of our code significantly
 
     /*
-     * Rust does automatic deref coercion when it finds types and trait implementations
+     * Rust performs automatic deref coercion when it finds types and trait implementations
      * in the following three cases:
      * - from &T to &U when T: Deref<Target=U>
      * - from &mut T to &mut U when T: DerefMut<Target=U>

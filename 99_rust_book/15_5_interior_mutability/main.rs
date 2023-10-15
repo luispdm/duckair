@@ -10,7 +10,7 @@
  * RefCell only works in single-threaded programs. There's only one owner of data with RefCell.
  * RefCell is useful when you are sure your code is following the borrowing rules, but the compiler is not able
  * to detect that. Which are those situations? The halting problem (https://youtu.be/macM_MtS_w4?si=z4lbH_3YjJIGAEye)
- * and the Messenger-Whatsapp problem defined below.
+ * and the Messenger-Whatsapp example defined below.
  *
  * From the Rust book
  * https://doc.rust-lang.org/book/ch15-05-interior-mutability.html#enforcing-borrowing-rules-at-runtime-with-refcellt :
@@ -77,10 +77,13 @@ fn main() {
     println!("{:?}", w.sent_msgs.borrow());
 
     let v = Rc::new(RefCell::new(5));
+    println!("v initial value is {}", *v.borrow());
     let a = Rc::new(Cons(Rc::clone(&v), Rc::new(Nil)));
     let b = Cons(Rc::new(RefCell::new(4)), Rc::clone(&a));
     let c = Cons(Rc::new(RefCell::new(3)), Rc::clone(&a));
-    // automatic dereferencing: RefCell is extracted from v (v type is Rc<RefCell<i32>>)
-    *v.borrow_mut() += 10; // *v extracts the i32 from RefCell
+    println!("{:?}\n{:?}\n{:?}", a, b, c);
+    // automatic dereferencing: RefCell is extracted from Rc (v type is Rc<RefCell<i32>>)
+    *v.borrow_mut() += 10; // *v.borrow_mut() extracts the i32 from RefCell
+    println!("v new value is {}", *v.borrow());
     println!("{:?}\n{:?}\n{:?}", a, b, c); // the update to v will be reflected inside a, b and c
 }

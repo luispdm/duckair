@@ -21,7 +21,7 @@ fn main() {
     let b = Box::new(5);
     println!("{}", b);
     // when b goes out of scope, the smart pointer on the stack and the data on the heap
-    // the smart pointer points to will both be deallocated
+    // the smart pointer points to will be both deallocated
     /*
      * Box doesn't have any overhead as it doesn't have many capabilities. You'd typically
      * use Box in the following situations:
@@ -45,8 +45,9 @@ use List::{Cons, Nil};
  * For example, the size of the enum "_Message" is equal to the size of its variant "Metadata" (the
  * biggest one as it is a tuple with 3 values).
  * 
- * If I were to remove the Box smart pointer from the List enum, I will see the compilation error:
- * "recursive type `ListInfSize` has infinite size - recursive without indirection". Why?
+ * If I were to remove the Box smart pointer from the definition of the List enum,
+ * I will see the compilation error:
+ * "recursive type `List` has infinite size - recursive without indirection". Why?
  * To calculate the space List needs, Rust calculates that for Nil and when it will check the space
  * Cons takes, it will need to know how much space List takes, because List is a member of the Cons
  * tuple, so it will check the enum (List) again, and again it will check Cons and it will need to
