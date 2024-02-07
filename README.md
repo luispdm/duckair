@@ -3,7 +3,7 @@ Examples on the Rust programming language coming from the Pluralsight course "Ru
 
 ## More examples on cargo
 ```shell
-cargo r --bin $BINARY_NAME # to run of the binaries listed in Cargo.toml. --bin or -b.
+cargo r --bin $BINARY_NAME # to run one of the binaries listed in Cargo.toml. --bin or -b.
 cargo r --package $BINARY_PACKAGE_NAME # to run one of the binary packages located in this repo (the folders with the main.rs files that have their own Cargo.toml). --package or -p.
 cargo test --workspace # tests all members of the workspace
 cargo test -p $PACKAGE_NAME # tests only that binary/library crate
