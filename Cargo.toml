@@ -127,3 +127,7 @@ path = "99_rust_book/15_5_interior_mutability/main.rs"
 [[bin]]
 name = "b_cycles"
 path = "99_rust_book/15_6_reference_cycles/main.rs"
+
+[[bin]]
+name = "b_threads_2"
+path = "99_rust_book/16_2_threads_messages/main.rs"
