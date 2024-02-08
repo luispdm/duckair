@@ -12,6 +12,18 @@ use std::{thread, sync::mpsc, sync::mpsc::{Receiver, Sender}};
  * Natively, Rust only supports native threads.
  * However, there are external libraries out there providing support
  * for green threads
+ *
+ * From the Rust book:
+ * Initially, the Rust team thought that ensuring memory safety and preventing concurrency problems
+ * were two separate challenges to be solved with different methods. Over time, the team discovered
+ * that the ownership and type systems are a powerful set of tools to help manage memory safety
+ * and concurrency problems! By leveraging ownership and type checking, many concurrency errors
+ * are compile-time errors in Rust rather than runtime errors. Therefore, rather than making you spend
+ * lots of time trying to reproduce the exact circumstances under which a runtime concurrency bug occurs,
+ * incorrect code will refuse to compile and present an error explaining the problem. As a result,
+ * you can fix your code while you’re working on it rather than potentially after it has been shipped to production.
+ * We’ve nicknamed this aspect of Rust FEARLESS CONCURRENCY. Fearless concurrency allows you to write code that
+ * is free of subtle bugs and is easy to refactor without introducing new bugs.
  */
 fn main() {
     //threads basics
