@@ -17,6 +17,7 @@ members = [
     "99_rust_book/13_3_cli_app_iterators",
     "99_rust_book/14_crates",
     "99_rust_book/17_2_trait_objects",
+    "99_rust_book/17_3_state_pattern",
 ]
 
 # Rust offers two release profiles: dev (cargo --build) and release (cargo build --release).
