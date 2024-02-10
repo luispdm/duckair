@@ -88,7 +88,7 @@ fn returns_summarizable(switch: bool) -> impl Summary {
          * The code below doesn't compile! The return type
          * must be the same in all the function body.
          * Different return types can be specified only
-         * via trait objects, which we will cover in chapter 17
+         * via trait objects, (see 99_rust_book/17_2_trait_objects)
          */
         // Tweet {
         //     username: String::from("@johndoe"),

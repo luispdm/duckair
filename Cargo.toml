@@ -15,7 +15,8 @@ members = [
     "99_rust_book/11_tests",
     "99_rust_book/12_cli_app",
     "99_rust_book/13_3_cli_app_iterators",
-    "99_rust_book/14_crates"
+    "99_rust_book/14_crates",
+    "99_rust_book/17_2_trait_objects",
 ]
 
 # Rust offers two release profiles: dev (cargo --build) and release (cargo build --release).
@@ -135,3 +136,7 @@ path = "99_rust_book/16_2_threads_messages/main.rs"
 [[bin]]
 name = "b_threads_state"
 path = "99_rust_book/16_3_threads_state/main.rs"
+
+[[bin]]
+name = "b_oop"
+path = "99_rust_book/17_1_oo_programming/main.rs"
