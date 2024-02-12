@@ -84,10 +84,10 @@ where
  * used, instead of the generic types. That's how generics work (see 11_generics and
  * 99_rust_book/10_1_traits).
  *
- * With generics and trait bounds, the compiler knows the concrete functions called at
- * compile time. This is called "static dispatch". The opposite is called "dynamic dispatch":
- * the compiler figures out the concrete functions called at runtime. Dynamic dispatch is used
- * with trait objects.
+ * With generics and trait bounds, thanks to the monomorphization, the compiler knows
+ * the concrete functions called at compile time. This is called "static dispatch".
+ * The opposite is called "dynamic dispatch": the compiler figures out the concrete functions
+ * called at runtime. Dynamic dispatch is used with trait objects.
  * Dynamic dispatch adds a little runtime cost but also the flexibility of storing any object that
  * implements a certain trait in a Vector.
  *

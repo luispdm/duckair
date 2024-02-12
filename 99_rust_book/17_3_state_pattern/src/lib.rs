@@ -149,5 +149,5 @@ impl EncodedPendingReview {
  *
  * Using OOP design patterns won't always be the best approach in Rust because of features
  * such as ownership, which typical OOP languages don't have. We can still leverage the features
- * of Rust to implement some patterns in a different way
+ * of Rust to implement some OOP patterns in a different way
 */
