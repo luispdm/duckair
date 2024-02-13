@@ -141,3 +141,7 @@ path = "99_rust_book/16_3_threads_state/main.rs"
 [[bin]]
 name = "b_oop"
 path = "99_rust_book/17_1_oo_programming/main.rs"
+
+[[bin]]
+name = "b_patterns"
+path = "99_rust_book/18_1_pattern_matching/main.rs"
