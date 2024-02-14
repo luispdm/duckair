@@ -149,3 +149,7 @@ path = "99_rust_book/18_1_pattern_matching/main.rs"
 [[bin]]
 name = "b_pattern_syntax"
 path = "99_rust_book/18_2_pattern_syntax/main.rs"
+
+[[bin]]
+name = "b_unsafe"
+path = "99_rust_book/19_1_unsafe/main.rs"
