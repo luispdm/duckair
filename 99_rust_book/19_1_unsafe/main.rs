@@ -44,6 +44,7 @@ fn main() {
         println!("{}", *r2);
         *r3 = 95;
         println!("{}", *r3);
+        // *r1 = 20; // cannot write to an immutable raw pointer
     }
     let addr = 0x40usize;
     let r4 = addr as *const i32;
@@ -54,7 +55,7 @@ fn main() {
 
     // call unsafe functions
     unsafe fn dangerous() {
-        // no need to write an unsafe block here as the function has already been declared unsafe
+        // no need to open an unsafe block here as the function has already been declared unsafe
         let num = 84;
         let r1 = &num as *const i32;
         println!("{}", *r1);
