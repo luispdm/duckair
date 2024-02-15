@@ -3,7 +3,7 @@ pub trait Draw {
 }
 
 pub struct Screen {
-    // why do trait objects have to use a box smart pointer? see chapter 19
+    // why do trait objects have to use a box smart pointer? see 99_rust_book/19_3_advanced_types
     pub components: Vec<Box<dyn Draw>>, // dynamic dispatch, see below
 }
 
