@@ -161,3 +161,7 @@ path = "99_rust_book/19_2_advanced_traits/main.rs"
 [[bin]]
 name = "b_a_types"
 path = "99_rust_book/19_3_advanced_types/main.rs"
+
+[[bin]]
+name = "b_a_functions"
+path = "99_rust_book/19_4_advanced_functions/main.rs"
