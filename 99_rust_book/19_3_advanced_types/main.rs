@@ -51,7 +51,7 @@ fn main() {
          * and guess is not assigned), thus Rust concludes that the only return type
          * is that of "Ok(num)".
          */
-        let _: u32 = match guess.trim().parse() {
+        let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
@@ -66,7 +66,7 @@ fn main() {
     //     }
     // }
     // never types are present in endless loops too.
-    // IMPORTANT: if there was a "break", the loop wouldn't have a never type
+    // IMPORTANT: if there's a "break", the loop doesn't have a never type
     // loop {
     //     println!("forever and ever");
     // }
