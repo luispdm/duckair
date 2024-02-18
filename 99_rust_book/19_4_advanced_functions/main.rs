@@ -41,7 +41,7 @@ fn main() {
     // let list_of_statuses: Vec<Status> = (0..5).map(|x| Status::Value(x) /* Status::Value */).collect();
     println!("{:?}", list_of_statuses);
     /*
-     * Tuple structs use parenthesis to initialize values inside them. "Value(u32)" looks like a function call,
+     * Tuple structs use parentheses to initialize values inside them. "Value(u32)" looks like a function call,
      * in fact these initializers are implemented as functions that take in arguments and return an instance
      * of that tuple struct. This means we can use Value as a function pointer!
      */
