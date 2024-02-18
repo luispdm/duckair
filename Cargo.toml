@@ -18,6 +18,9 @@ members = [
     "99_rust_book/14_crates",
     "99_rust_book/17_2_trait_objects",
     "99_rust_book/17_3_state_pattern",
+    "99_rust_book/19_5_macros/",
+    "99_rust_book/19_5_macros/hello_macro",
+    "99_rust_book/19_5_macros/hello_macro/hello_macro_derive",
 ]
 
 # Rust offers two release profiles: dev (cargo --build) and release (cargo build --release).
