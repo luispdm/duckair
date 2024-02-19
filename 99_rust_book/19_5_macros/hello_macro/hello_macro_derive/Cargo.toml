@@ -1,5 +1,5 @@
 [package]
-# procedural macro crates need to be defined inside their own crate
+# procedural macros need to be defined inside their own crate
 name = "hello_macro_derive" # the convention with custom-derived macro crates is to name them: "$PARENT_CRATE_derive"
 version = "0.1.0"
 edition = "2021"
