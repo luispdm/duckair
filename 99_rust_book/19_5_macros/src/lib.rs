@@ -37,7 +37,7 @@ macro_rules! vec_two {
             // temp_vec.push(2);
             // temp_vec.push(3);
         }
-    };
+    }; // macro arms are separated by ";"
 }
 
 // procedural macros (see the library crates inside this folder for an example of procedural macros)

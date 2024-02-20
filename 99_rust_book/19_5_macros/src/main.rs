@@ -11,3 +11,11 @@ fn main() {
 
     Pancakes::hello_macro();
 }
+
+// if i define a macro here:
+// macro_rules! my_macro {
+//     () => {
+//         println!("Check out my macro!");
+//     };
+// }
+// i can't use it in main! it must be declared before main
