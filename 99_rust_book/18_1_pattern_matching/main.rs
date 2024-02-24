@@ -22,6 +22,13 @@ fn main() {
         // this is how you use the variable in the "catch-all" pattern
         lang => println!("unsupported language: {:?}", lang),
     }
+    // if you want to match against one pattern only, you can use the "matches!" macro
+    // or the if let statement
+    let lang = Language::Italian;
+    println!("{}", matches!(lang, Language::Spanish)); // false
+    if let Language::Spanish = lang {
+        println!("hola");
+    }
 
     // if let: patterns don't have to be exhaustive here, we've omitted the "else" block
     let auth_status: Option<&str> = None;
