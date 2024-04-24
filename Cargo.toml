@@ -21,6 +21,7 @@ members = [
     "99_rust_book/19_5_macros/",
     "99_rust_book/19_5_macros/hello_macro",
     "99_rust_book/19_5_macros/hello_macro/hello_macro_derive",
+    "99_rust_book/20_1_server",
 ]
 
 # Rust offers two release profiles: dev (cargo --build) and release (cargo build --release).
