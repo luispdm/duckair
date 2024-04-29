@@ -24,11 +24,11 @@ fn main() {
     }
     println!("scalar representation:");
     for c in hn.chars() {
-        println!("{}", c); //न, म, स, weird char, त, weird char
+        println!("{}", c); // न, म, स, weird char, त, weird char
         
     }
     println!("grapheme representation (not implemented in std Rust):");
     for g in hn.graphemes(true) {
-        println!("{}", g); //न, म, स, त
+        println!("{}", g); // न, म, स, त
     }
 }

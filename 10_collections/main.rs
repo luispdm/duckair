@@ -34,7 +34,7 @@ fn main() {
     }
     // arrays and vectors are sliced with ".." (last index is exclusive)
     {
-        println!("{:?}", &mv[0..2]); // prints one, two"
+        println!("{:?}", &mv[0..2]); // prints: "one, two"
     }
     /*
      * &mv[..]  => the whole slice

@@ -100,7 +100,6 @@ fn _panic_vec() {
     println!("{}", v[5]);
 }
 
-// TODO need to know what "Box" and "dyn" are used for
 // Box<dyn Error> is not used much in real-world Rust
 fn read_file(p: &str) -> Result<String, Box<dyn Error>> {
     // "?" makes the function return if "open" fails. Same thing for "read_to_string"

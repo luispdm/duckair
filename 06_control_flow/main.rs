@@ -129,6 +129,13 @@ fn main() {
         }
     };
     println!("counting stuff in the loop returns... {}", result);
+    // if can return values too
+    let dish_status = if dish == ("", "", "") {
+        "dish empty"
+    } else {
+        "dish full"
+    };
+    println!("{dish_status}");
     // while and for loops are pretty similar to other languages
     // while let works similarly to if let
     // for each
