@@ -68,6 +68,7 @@ fn main() {
     }
     let once = fn_once();
     once();
+    // the instruction below produces the following error:
     // "use of moved value once - this value implements FnOnce, which causes it to be moved when called"
     // once();
 }
@@ -112,7 +113,8 @@ fn generate_workout(intensity: u32, random: u32) {
     });
     if intensity < 25 {
         println!("Do {} pushups", cache.value(intensity));
-        // this time the closure is not being called because the entry already exist in the map
+        // at the instruction below, the closure inside "value" (i.e. "|| (self.calculation)(arg)")
+        // is not being called because the entry already exist in the map ("value" returns "entry(arg)")
         println!("Now, do {} situps", cache.value(intensity));
     } else if random == 3 {
         println!("Take a break!");
