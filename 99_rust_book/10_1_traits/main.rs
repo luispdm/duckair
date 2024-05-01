@@ -78,7 +78,7 @@ fn same_type<T: Summary>(arg1: &T, arg2: &T) {
 
 // polymorphism pt.2 - this is very useful in closures and iterators
 fn returns_summarizable(switch: bool) -> impl Summary {
-    if switch{
+    if switch {
         Article {
             author: String::from("Deux Jean"),
             headline: String::from("C'est la vie"),
@@ -88,7 +88,7 @@ fn returns_summarizable(switch: bool) -> impl Summary {
          * The code below doesn't compile! The return type
          * must be the same in all the function body.
          * Different return types can be specified only
-         * via trait objects, (see 99_rust_book/17_2_trait_objects)
+         * via trait objects (see 99_rust_book/17_2_trait_objects)
          */
         // Tweet {
         //     username: String::from("@johndoe"),
@@ -122,6 +122,6 @@ fn main() {
         tweet: String::from("fake news... fake news everywhere!"),
         replies: vec![],
     };
-    not_same_type(&article, &tweet)
+    not_same_type(&article, &tweet);
     // same_type(&article, &tweet); // doesn't compile!
 }

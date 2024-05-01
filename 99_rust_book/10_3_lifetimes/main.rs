@@ -4,17 +4,17 @@ use std::fmt::Display;
 /*
  * The three rules of lifetimes:
  *
+ * input lifetime parameter  = parameter of a function which holds
+ * a lifetime
+ * output lifetime parameter = return reference of a function which holds
+ * a lifetime
+ * 
  * 1. Each parameter that is a reference gets its own lifetime parameter
  * 2. If there is exactly one input lifetime parameter, that lifetime is
  *    assigned to all output lifetime parameters
  * 3. If there are multiple input lifetime parameters but one of them is
  *    &self or &mut self, the lifetime of self is assigned to all output
  *    lifetime parameters
- *
- * input lifetime parameter  = parameter of a function which holds
- * a lifetime
- * output lifetime parameter = return reference of a function which holds
- * a lifetime
  */
 
 // how to specify lifetimes in different forms
@@ -55,7 +55,7 @@ fn main() {
     // }
     // println!("{}", result);
 
-    // the below does compile because result has the same scope as of str2
+    // the code below does compile because result has the same scope as of str2
     // (the parameter with the smallest lifetime)
     let ann = String::from("public announcement");
     {
@@ -91,7 +91,7 @@ fn main() {
     let _s: &'static str = "static";
 }
 
-// lifetimes in structs - the following struct cannot outlive the reference passed to part
+// lifetimes in structs - the following struct cannot outlive the reference passed to "part"
 // try not to resource to lifetimes in structs as a first solution, try using owned data
 // as the program will be easier to read, to work with and to refactor
 struct ImportantExcerpt<'a> {
@@ -99,7 +99,7 @@ struct ImportantExcerpt<'a> {
 }
 
 impl<'a> ImportantExcerpt<'a> {
-    // no need to specify a lifetime because rule #3 is respected (see the top of the file)
+    // no need to specify a lifetime because rule #3 is observed (see the top of the file)
     fn return_part(&self, announcement: &str) -> &str {
         println!("Attention please: {}", announcement);
         self.part
