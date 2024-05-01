@@ -1,7 +1,7 @@
 /*
  * Smart pointers are structs that act like pointers, with metadata
  * and extra capabilities.
- * In many cases, smart pointers own the data they pont to, unlike references that
+ * In many cases, smart pointers own the data they point to, unlike references that
  * just borrow the values.
  *
  * String and Vec are smart pointers: they own the data, they store extra metadata

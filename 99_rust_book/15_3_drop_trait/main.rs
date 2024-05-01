@@ -18,7 +18,7 @@ fn main() {
     /*
      * There are situations in which one might want to clean up values early, for example
      * when managing locks: you wanna release the lock manually so other code can
-     * access the unlocked resource. To do this one should call the drop method explicitly.
+     * access the unlocked resource. To do this, one should call the drop method explicitly.
      *
      * Rust does not allow explicitly calling the custom drop method of the smart pointer,
      * but it does allow calling the std lib drop method. The std lib drop method will
