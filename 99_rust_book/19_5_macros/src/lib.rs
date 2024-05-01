@@ -32,7 +32,7 @@ macro_rules! vec_two {
                 temp_vec.push($x);
             )*
             temp_vec
-            // when the macro is called with "vec![1, 2, 3]", "temp_vec.push($x)" is replaced with:
+            // when the macro is called with "vec_two![1, 2, 3]", "temp_vec.push($x)" is replaced with:
             // temp_vec.push(1);
             // temp_vec.push(2);
             // temp_vec.push(3);

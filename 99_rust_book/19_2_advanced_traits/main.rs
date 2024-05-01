@@ -25,7 +25,7 @@ fn main() {
     //         Some(0)
     //     }
     // }
-    // so the question is: "does it makes sense to have multiple implementations for a single type"?
+    // so the question is: "does it make sense to have multiple implementations for a single type"?
     // if the answer is yes, then you need generics
 
     /*
@@ -162,7 +162,7 @@ fn main() {
     }
     // newtype pattern
     // in chapter 10 we learned about the orphan rule, which states that we can implement a trait on a type
-    // as long as the type or the trait belong to our crate.
+    // as long as the type or the trait belongs to our crate.
     // the code below does not compile as both Display and String are defined outside of our crate:
     // impl fmt::Display for Vec<String> {
     //     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

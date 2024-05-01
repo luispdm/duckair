@@ -24,7 +24,7 @@ fn main() {
         f(x) + f(x)
     }
     // one case in which you might only accept function pointers instead of closures, is when
-    // interfacing with external code. for example, C doesn't support closures.
+    // interacting with external code. for example, C doesn't support closures.
     // examples where both a function pointer or a closure can be used:
     let list_of_numbers = vec![1, 2, 3];
     let list_of_strings: Vec<String> = list_of_numbers.iter().map(|i| i.to_string()).collect();
