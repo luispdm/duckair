@@ -53,10 +53,10 @@ impl Messenger for Whatsapp {
         // let mut b = self.sent_msgs.borrow_mut(); // it compiles but it panicks at runtime: multiple mutable references!
         a.push(msg.to_string());
 
-        // note that if we had replaced the fn body with the following:
+        // note that if we replace the fn body with the following:
         // self.sent_msgs.borrow_mut().push(msg.to_string());
         // self.sent_msgs.borrow_mut().push(msg.to_string());
-        // the code wouldn't have panicked because the mutable references are not assigned to any variable, thus they are
+        // the code doesn't panic because the mutable references are not assigned to any variable, thus they are
         // dropped on the next instruction!
     }
 }

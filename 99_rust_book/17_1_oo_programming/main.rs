@@ -2,7 +2,7 @@ fn main() {
     println!("just read the comments");
 }
 
-// the struct it's public but not its fields => that's how I achieve encapsulation in Rust
+// the struct is public but not its fields => that's how I achieve encapsulation in Rust
 pub struct AverageCollection {
     list: Vec<i32>,
     average: f64,
@@ -10,7 +10,7 @@ pub struct AverageCollection {
 
 /*
  * There's no inheritance concept in Rust. The reasons why you want inheritance are two:
- * 1. code sharing: implement the behaviour on one type so that types inheriting from that reuse
+ * 1. code sharing: implement the behaviour on one type so that types inheriting from that, reuse
  *    that behaviour
  * 2. polymorphism
  *
