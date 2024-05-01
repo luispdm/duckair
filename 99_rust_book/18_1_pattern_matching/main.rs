@@ -30,7 +30,7 @@ fn main() {
         println!("hola");
     }
 
-    // if let: patterns don't have to be exhaustive here, we've omitted the "else" block
+    // if let: patterns don't have to be exhaustive here (we've omitted the "else" block in the code below)
     let auth_status: Option<&str> = None;
     let is_admin = false;
     if let Some(auth_status) = auth_status {
@@ -78,6 +78,10 @@ fn main() {
     // if the patterns don't match.
     // the code below does not compile as the assignment never matches (x is None)
     // let Some(y) = x;
+    // this code would compile though, as we are making the pattern irrefutable:
+    // let Some(y) = x else {
+    //     return;
+    // };
     // if let and while let accept both refutable and irrefutable patterns.
     // in these cases, irrefutable patterns give warning: if let and while let
     // are useless if the pattern always matches, you can simply use "let"

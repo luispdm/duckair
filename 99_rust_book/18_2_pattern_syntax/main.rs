@@ -128,13 +128,11 @@ fn main() {
     }
     let message = Msg::Hello { id: 50 };
     match message {
-        // check if id is within a range, capture the value ("@") and print it
-        Msg::Hello {
-            id: id_var @ 30..=70,
-        } => println!("{id_var} in range"),
-        // only check if id is within a range
+        // check if id is within range, capture the value ("@") and print it
+        Msg::Hello { id: id_var @30..=70 } => println!("{id_var} in range"),
+        // check if id is within range but don't capture the value
         Msg::Hello { id: 10..=12 } => println!("in another range"),
-        // bind the value but don't check that is within a range
+        // "catch-all" capturing the value
         Msg::Hello { id } => println!("another {id}"),
     }
 }
