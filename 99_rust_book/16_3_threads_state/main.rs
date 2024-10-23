@@ -13,7 +13,7 @@ fn main() {
     }
     // even though Rust has a lot of safeguards, you can still create deadlocks!
     // for example: if i didn't lock the mutex in a new scope before, i'd be deadlocking here
-    println!("mutex's data now is: {:?}", m.lock().unwrap());
+    println!("mutex's data now is: {:?}", m.lock().unwrap()); // 6
 
     // Arc is the atomic reference-counting smart pointer i.e. it is a thread-safe, reference-counting smart pointer
     let counter = Arc::new(Mutex::new(0));
@@ -35,5 +35,5 @@ fn main() {
     for h in handles {
         h.join().unwrap();
     }
-    println!("counter incremented to: {}", counter.lock().unwrap());
+    println!("counter incremented to: {}", counter.lock().unwrap()); // 10
 }
